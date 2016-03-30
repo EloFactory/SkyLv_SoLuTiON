@@ -1,4 +1,4 @@
-﻿namespace SkyLv_AurelionSol
+namespace SkyLv_AurelionSol
 {
 
     using LeagueSharp;
@@ -29,7 +29,7 @@
         {
             //Menu
             SkyLv_AurelionSol.Menu.SubMenu("Combo").AddItem(new MenuItem("AurelionSol.AutoQOnDashPosition", "Auto Use Q On Target Dash End Position").SetValue(true));
-
+            
             CustomEvents.Unit.OnDash += Unit_OnDash;
         }
 
@@ -39,12 +39,12 @@
             
             var target = TargetSelector.GetTarget(Q.Range, TargetSelector.DamageType.Magical);
 
-            if (!sender.IsEnemy) return;
+            if (SkyLv_AurelionSol.Menu.Item("AurelionSol.AutoQOnDashPosition").GetValue<bool>() || !sender.IsEnemy || sender == null) return;
 
             if (sender.NetworkId == target.NetworkId)
             {
 
-                if (SkyLv_AurelionSol.Menu.Item("AurelionSol.AutoQOnDashPosition").GetValue<bool>() && Q.IsReady() && Player.Distance(args.EndPos) > 550 && Player.Distance(sender) < Q.Range)
+                if (Q.IsReady() && Player.Distance(args.EndPos) > 550 && Player.Distance(sender) < Q.Range)
                 {
                     var delay = (int)(args.EndTick - Game.Time - Q.Delay - 0.1f);
                     if (delay > 0)
