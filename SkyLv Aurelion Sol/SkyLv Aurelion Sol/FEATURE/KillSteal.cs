@@ -1,4 +1,4 @@
-﻿namespace SkyLv_AurelionSol
+namespace SkyLv_AurelionSol
 {
     using System;
     using System.Linq;
@@ -115,7 +115,12 @@
 
                     if (useRKS && R.IsReady() && target.Health < MathsLib.RDamage(target) && !target.IsDead)
                     {
-                        R.CastIfHitchanceEquals(target, HitChance.VeryHigh, PacketCast);
+                        var prediction = R.GetPrediction(target);
+                        if (prediction.Hitchance == HitChance.VeryHigh)
+                        {
+                            R.Cast(prediction.CastPosition, PacketCast);
+                            return;
+                        }
                         return;
                     }
 
