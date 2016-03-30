@@ -1,4 +1,4 @@
-﻿namespace SkyLv_AurelionSol
+namespace SkyLv_AurelionSol
 {
     using System;
 
@@ -72,32 +72,36 @@
             {
                 var target = TargetSelector.GetTarget(W2.Range + 50, TargetSelector.DamageType.Magical);
 
-                if (useQ && Q.IsReady())
+                if (target != null)
                 {
-                    var prediction = Q.GetPrediction(target);
-                    if (prediction.Hitchance >= HitChance.High)
+                    if (useQ && Q.IsReady())
                     {
-                        Q.Cast(prediction.CastPosition, PacketCast);
+                        var prediction = Q.GetPrediction(target);
+                        if (prediction.Hitchance >= HitChance.High)
+                        {
+                            Q.Cast(prediction.CastPosition, PacketCast);
+                        }
+                    }
+
+                    if (useW)
+                    {
+                        if (target.Distance(Player) <= W1.Range + 50 && MathsLib.isWInLongRangeMode())
+                        {
+                            W2.Cast(PacketCast);
+                        }
+
+                        if (target.Distance(Player) > W1.Range + 50 && target.Distance(Player) < W2.Range + 50 && !MathsLib.isWInLongRangeMode())
+                        {
+                            W1.Cast(PacketCast);
+                        }
+
+                        else if (MathsLib.enemyChampionInRange(600 + 300) == 0 && MathsLib.isWInLongRangeMode())
+                        {
+                            W2.Cast(PacketCast);
+                        }
                     }
                 }
-
-                if (useW)
-                {
-                    if (target.Distance(Player) <= W1.Range + 50 && MathsLib.isWInLongRangeMode())
-                    {
-                        W2.Cast(PacketCast);
-                    }
-
-                    if (target.Distance(Player) > W1.Range + 50 && target.Distance(Player) < W2.Range + 50 && !MathsLib.isWInLongRangeMode())
-                    {
-                        W1.Cast(PacketCast);
-                    }
-
-                    else if (MathsLib.enemyChampionInRange(600 + 300) == 0 && MathsLib.isWInLongRangeMode())
-                    {
-                        W2.Cast(PacketCast);
-                    }
-                }
+                
             }
         }
     }
