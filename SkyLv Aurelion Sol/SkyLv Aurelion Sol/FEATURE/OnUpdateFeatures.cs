@@ -1,4 +1,4 @@
-﻿namespace SkyLv_AurelionSol
+namespace SkyLv_AurelionSol
 {
     using System;
     using System.Linq;
@@ -50,7 +50,11 @@
 
         private static void Game_OnUpdate(EventArgs args)
         {
-            AutoR();
+            if (SkyLv_AurelionSol.Menu.Item("AurelionSol.AutoR").GetValue<bool>())
+            {
+                AutoR();
+            }
+
             AutoWManager();
         }
 
@@ -71,25 +75,13 @@
 
         public static void AutoR()
         {
-            var useAutoR = SkyLv_AurelionSol.Menu.Item("AurelionSol.AutoR").GetValue<bool>();
+            var target = TargetSelector.GetTarget(W2.Range + 50, TargetSelector.DamageType.Magical);
             var MinimumEnemyHitAutoR = SkyLv_AurelionSol.Menu.Item("AurelionSol.MinimumEnemyHitAutoR").GetValue<Slider>().Value;
             var PacketCast = SkyLv_AurelionSol.Menu.Item("AurelionSol.UsePacketCastCombo").GetValue<bool>();
 
-            if (useAutoR)
+            if (R.IsReady())
             {
-                float RRange = 1420;
-                float RWidth = 120;
-                foreach (var enemy in HeroManager.Enemies)
-                {
-                    var startPos = enemy.ServerPosition;
-                    var endPos = Player.ServerPosition.Extend(startPos, Player.Distance(enemy) + RRange);
-                    var rectangle = new Geometry.Polygon.Rectangle(startPos, endPos, RWidth);
-
-                    if (HeroManager.Enemies.Count(x => rectangle.IsInside(x)) >= MinimumEnemyHitAutoR)
-                    {
-                        R.Cast(enemy, PacketCast);
-                    }
-                }
+                R.CastIfWillHit(target, MinimumEnemyHitAutoR, PacketCast);
             }
 
 
