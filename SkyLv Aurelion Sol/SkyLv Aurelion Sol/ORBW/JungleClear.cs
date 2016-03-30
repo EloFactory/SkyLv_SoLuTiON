@@ -81,7 +81,7 @@
                 if (useQ && Player.ManaPercent > MiniManaQ && Q.IsReady())
                 {
                     var prediction = Q.GetPrediction(MinionN);
-                    if (prediction.Hitchance >= HitChance.High)
+                    if (prediction.Hitchance == HitChance.VeryHigh)
                     {
                         Q.Cast(prediction.CastPosition, PacketCast);
                     }
