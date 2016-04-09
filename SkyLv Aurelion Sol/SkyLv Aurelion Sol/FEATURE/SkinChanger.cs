@@ -33,7 +33,7 @@
         {
             if (SkyLv_AurelionSol.Menu.Item("AurelionSol.SkinChanger").GetValue<bool>())
             {
-                Player.SetSkin(Player.CharData.BaseSkinName, SkyLv_Evelynn.Menu.Item("AurelionSol.SkinChangerName").GetValue<StringList>().SelectedIndex);
+                Player.SetSkin(Player.CharData.BaseSkinName, SkyLv_AurelionSol.Menu.Item("AurelionSol.SkinChangerName").GetValue<StringList>().SelectedIndex);
             }
             else
                 Player.SetSkin(Player.CharData.BaseSkinName, Player.BaseSkinId);
