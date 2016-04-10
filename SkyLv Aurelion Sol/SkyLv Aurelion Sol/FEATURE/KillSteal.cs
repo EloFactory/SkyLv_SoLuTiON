@@ -72,7 +72,6 @@ namespace SkyLv_AurelionSol
             KS();
         }
 
-        #region KillSteal
         public static void KS()
         {
             var PacketCast = SkyLv_AurelionSol.Menu.Item("AurelionSol.PacketCastKS").GetValue<bool>();
@@ -81,59 +80,47 @@ namespace SkyLv_AurelionSol
             var useWKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseWKS").GetValue<bool>();
             var useRKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseRKS").GetValue<bool>();
 
-            foreach (var target in ObjectManager.Get<Obj_AI_Hero>().Where(target => !target.IsMe && target.Team != ObjectManager.Player.Team))
+            (var target in ObjectManager.Get<Obj_AI_Hero>().Where(target => !target.IsMe && target.Team != ObjectManager.Player.Team && !target.IsZombie && (SkyLv_Evelynn.Ignite.Slot != SpellSlot.Unknown || !target.HasBuff("summonerdot"))))
             {
-
-                if (!target.HasBuff("SionPassiveZombie") && !target.HasBuff("Udying Rage") && !target.HasBuff("JudicatorIntervention"))
+                if (!target.IsDead)
                 {
-                    if (useQKS && Q.IsReady() && target.Health < MathsLib.QDamage(target) && !target.IsDead)
+                    if (useQKS && Q.IsReady() && target.Health < MathsLib.QDamage(target))
                     {
                         var prediction = Q.GetPrediction(target);
                         if (prediction.Hitchance >= HitChance.High)
                         {
                             Q.Cast(prediction.CastPosition, PacketCast);
-                            return;
                         }
-                        
                     }
 
-                    if (useWKS && W1.IsReady() && target.Health < W1.GetDamage(target) && !target.IsDead)
+                    if (useWKS && W1.IsReady() && target.Health < W1.GetDamage(target))
                     {
                         if (Player.Distance(target) > W1.Range - 20 && Player.Distance(target) < W1.Range + 20 && MathsLib.isWInLongRangeMode())
                         {
                             W2.Cast(PacketCast);
-                            return;
                         }
 
                         if (Player.Distance(target) > W2.Range - 20 && Player.Distance(target) < W2.Range + 20 && !MathsLib.isWInLongRangeMode())
                         {
                             W1.Cast(PacketCast);
-                            return;
                         }
-                        return;
                     }
 
-                    if (useRKS && R.IsReady() && target.Health < MathsLib.RDamage(target) && !target.IsDead)
+                    if (useRKS && R.IsReady() && target.Health < MathsLib.RDamage(target))
                     {
                         var prediction = R.GetPrediction(target);
                         if (prediction.Hitchance == HitChance.VeryHigh)
                         {
                             R.Cast(prediction.CastPosition, PacketCast);
-                            return;
                         }
-                        return;
                     }
 
-                    if (useIgniteKS && SkyLv_AurelionSol.IgniteSlot.IsReady() && target.Health < Player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite) && Player.Distance(target) <= 600 && !target.IsDead && target.IsValidTarget())
+                    if (useIgniteKS && SkyLv_AurelionSol.Ignite.Slot != SpellSlot.Unknown && Player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite) > target.Health && Player.Distance(target) <= SkyLv_AurelionSol.Ignite.Range)
                     {
-                        Player.Spellbook.CastSpell(SkyLv_AurelionSol.IgniteSlot);
-                        return;
+                        Player.Spellbook.CastSpell(SkyLv_AurelionSol.Ignite.Slot, target);
                     }
-
                 }
-
             }
         }
-        #endregion
     }
 }
