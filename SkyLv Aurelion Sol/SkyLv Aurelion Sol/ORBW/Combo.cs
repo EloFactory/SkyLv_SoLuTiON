@@ -47,9 +47,6 @@ namespace SkyLv_AurelionSol
             //Menu
             SkyLv_AurelionSol.Menu.SubMenu("Combo").AddItem(new MenuItem("AurelionSol.UseQCombo", "Use Q In Combo").SetValue(true));
             SkyLv_AurelionSol.Menu.SubMenu("Combo").AddItem(new MenuItem("AurelionSol.UseWCombo", "Use W In Combo").SetValue(true));
-            SkyLv_AurelionSol.Menu.SubMenu("Combo").AddItem(new MenuItem("AurelionSol.AutoManageW", "Auto Manage W").SetValue(true));
-            SkyLv_AurelionSol.Menu.SubMenu("Combo").AddItem(new MenuItem("AurelionSol.AutoR", "Auto R If Minimum Enemy Hit").SetValue(true));
-            SkyLv_AurelionSol.Menu.SubMenu("Combo").AddItem(new MenuItem("AurelionSol.MinimumEnemyHitAutoR", "Minimum Enemy Hit To Use R").SetValue(new Slider(3, 1, 5)));
             SkyLv_AurelionSol.Menu.SubMenu("Combo").AddItem(new MenuItem("AurelionSol.UsePacketCastCombo", "Use PacketCast In Combo").SetValue(false));
 
             Game.OnUpdate += Game_OnUpdate;
