@@ -80,7 +80,7 @@ namespace SkyLv_AurelionSol
             var useWKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseWKS").GetValue<bool>();
             var useRKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseRKS").GetValue<bool>();
 
-            (var target in ObjectManager.Get<Obj_AI_Hero>().Where(target => !target.IsMe && target.Team != ObjectManager.Player.Team && !target.IsZombie && (SkyLv_Evelynn.Ignite.Slot != SpellSlot.Unknown || !target.HasBuff("summonerdot"))))
+            foreach (var target in ObjectManager.Get<Obj_AI_Hero>().Where(target => !target.IsMe && target.Team != ObjectManager.Player.Team && !target.IsZombie && (SkyLv_AurelionSol.Ignite.Slot != SpellSlot.Unknown || !target.HasBuff("summonerdot"))))
             {
                 if (!target.IsDead)
                 {
