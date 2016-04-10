@@ -48,7 +48,7 @@
             //Menu
             SkyLv_Evelynn.Menu.SubMenu("JungleClear").AddSubMenu(new Menu("Jungle KS Mode", "Jungle KS Mode"));
             SkyLv_Evelynn.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").AddItem(new MenuItem("Evelynn.JungleKS", "Jungle KS").SetValue(true));
-            SkyLv_Evelynn.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").AddItem(new MenuItem("Evelynn.JungleKSPacketCast", "Jungle KS PacketCast").SetValue(true));
+            SkyLv_Evelynn.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").AddItem(new MenuItem("Evelynn.JungleKSPacketCast", "Jungle KS PacketCast").SetValue(false));
             SkyLv_Evelynn.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").AddSubMenu(new Menu("Advanced Settings", "Advanced Settings"));
             SkyLv_Evelynn.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").SubMenu("Advanced Settings").AddItem(new MenuItem("Evelynn.UseQJungleKS", "KS With Q").SetValue(true));
             SkyLv_Evelynn.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").SubMenu("Advanced Settings").AddItem(new MenuItem("Evelynn.UseEJungleKS", "KS With E").SetValue(true));
