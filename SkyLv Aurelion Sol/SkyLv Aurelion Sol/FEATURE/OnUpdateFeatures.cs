@@ -45,6 +45,12 @@ namespace SkyLv_AurelionSol
 
         static OnUpdateFeatures()
         {
+            //Menu
+            SkyLv_AurelionSol.Menu.SubMenu("Combo").AddSubMenu(new Menu("Auto Spell Usage", "Auto Spell Usage"));
+            SkyLv_AurelionSol.Menu.SubMenu("Combo").SubMenu("Auto Spell Usage").AddItem(new MenuItem("AurelionSol.AutoManageW", "Auto Manage W").SetValue(true));
+            SkyLv_AurelionSol.Menu.SubMenu("Combo").SubMenu("Auto Spell Usage").AddItem(new MenuItem("AurelionSol.AutoR", "Auto R If Minimum Enemy Hit").SetValue(true));
+            SkyLv_AurelionSol.Menu.SubMenu("Combo").SubMenu("Auto Spell Usage").AddItem(new MenuItem("AurelionSol.MinimumEnemyHitAutoR", "Minimum Enemy Hit To Use R").SetValue(new Slider(3, 1, 5)));
+
             Game.OnUpdate += Game_OnUpdate;
         }
 
@@ -83,8 +89,6 @@ namespace SkyLv_AurelionSol
             {
                 R.CastIfWillHit(target, MinimumEnemyHitAutoR, PacketCast);
             }
-
-
         }
 
     }
