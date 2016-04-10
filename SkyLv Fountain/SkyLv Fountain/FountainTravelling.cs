@@ -1,4 +1,4 @@
-﻿namespace SkyLv_FountainTravelling
+﻿namespace SkyLv_Fountain
 {
     using System;
 
@@ -14,7 +14,7 @@
         {
             get
             {
-                return SkyLv_FountainTravelling.Player;
+                return SkyLv_Fountain.Player;
             }
         }
         #endregion
@@ -29,19 +29,19 @@
             
             if (Game.MapId == GameMapId.SummonersRift)
             {
-                SkyLv_FountainTravelling.Menu.AddItem(new MenuItem(Player.ChampionName.ToString() + ".AutoMoveFountainMovePosSummonersRift", "Auto Move Best Pos in Fountain").SetValue(true));
-                SkyLv_FountainTravelling.Menu.AddItem(new MenuItem(Player.ChampionName.ToString() + ".FountainMovePosSummonersRift", "Player Lane").SetValue(new StringList(new[] { "Mid", "Top", "Bot" }, 0)));
+                SkyLv_Fountain.Menu.AddItem(new MenuItem(Player.ChampionName.ToString() + ".AutoMoveFountainMovePosSummonersRift", "Auto Move Best Pos in Fountain").SetValue(true));
+                SkyLv_Fountain.Menu.AddItem(new MenuItem(Player.ChampionName.ToString() + ".FountainMovePosSummonersRift", "Player Lane").SetValue(new StringList(new[] { "Mid", "Top", "Bot" }, 0)));
             }
             
             if (Game.MapId == GameMapId.TwistedTreeline)
             {
-                SkyLv_FountainTravelling.Menu.AddItem(new MenuItem(Player.ChampionName.ToString() + ".AutoMoveFountainMovePosTwistedTreeline", "Auto Move Best Pos in Fountain").SetValue(true));
-                SkyLv_FountainTravelling.Menu.AddItem(new MenuItem(Player.ChampionName.ToString() + ".FountainMovePosTwistedTreeline", "Player Lane").SetValue(new StringList(new[] { "Top", "Bot" }, 0)));
+                SkyLv_Fountain.Menu.AddItem(new MenuItem(Player.ChampionName.ToString() + ".AutoMoveFountainMovePosTwistedTreeline", "Auto Move Best Pos in Fountain").SetValue(true));
+                SkyLv_Fountain.Menu.AddItem(new MenuItem(Player.ChampionName.ToString() + ".FountainMovePosTwistedTreeline", "Player Lane").SetValue(new StringList(new[] { "Top", "Bot" }, 0)));
             }
 
             if (Game.MapId == GameMapId.HowlingAbyss)
             {
-                SkyLv_FountainTravelling.Menu.AddItem(new MenuItem(Player.ChampionName.ToString() + ".AutoMoveFountainMovePosHowlingAbyss", "Auto Move Best Pos in Fountain").SetValue(true));
+                SkyLv_Fountain.Menu.AddItem(new MenuItem(Player.ChampionName.ToString() + ".AutoMoveFountainMovePosHowlingAbyss", "Auto Move Best Pos in Fountain").SetValue(true));
             }
 
             Game.OnUpdate += Game_OnUpdate;
@@ -58,11 +58,11 @@
             {
                 #region SummonersRift
 
-                if (Game.MapId == GameMapId.SummonersRift && SkyLv_FountainTravelling.Menu.Item(Player.ChampionName.ToString() + ".AutoMoveFountainMovePosSummonersRift").GetValue<bool>())
+                if (Game.MapId == GameMapId.SummonersRift && SkyLv_Fountain.Menu.Item(Player.ChampionName.ToString() + ".AutoMoveFountainMovePosSummonersRift").GetValue<bool>())
                 {
                     if (Player.Team == GameObjectTeam.Order)
                     {
-                        switch (SkyLv_FountainTravelling.Menu.Item(Player.ChampionName.ToString() + ".FountainMovePosSummonersRift").GetValue<StringList>().SelectedIndex)
+                        switch (SkyLv_Fountain.Menu.Item(Player.ChampionName.ToString() + ".FountainMovePosSummonersRift").GetValue<StringList>().SelectedIndex)
                         {
                             case 0:
                                 {
@@ -88,7 +88,7 @@
 
                     if (Player.Team == GameObjectTeam.Chaos)
                     {
-                        switch (SkyLv_FountainTravelling.Menu.Item(Player.ChampionName.ToString() + ".FountainMovePosSummonersRift").GetValue<StringList>().SelectedIndex)
+                        switch (SkyLv_Fountain.Menu.Item(Player.ChampionName.ToString() + ".FountainMovePosSummonersRift").GetValue<StringList>().SelectedIndex)
                         {
                             case 0:
                                 {
@@ -116,11 +116,11 @@
 
                 #region TwistedTreeline
 
-                if (Game.MapId == GameMapId.TwistedTreeline && SkyLv_FountainTravelling.Menu.Item(Player.ChampionName.ToString() + ".AutoMoveFountainMovePosTwistedTreeline").GetValue<bool>())
+                if (Game.MapId == GameMapId.TwistedTreeline && SkyLv_Fountain.Menu.Item(Player.ChampionName.ToString() + ".AutoMoveFountainMovePosTwistedTreeline").GetValue<bool>())
                 {
                     if (Player.Team == GameObjectTeam.Order)
                     {
-                        switch (SkyLv_FountainTravelling.Menu.Item(Player.ChampionName.ToString() + ".FountainMovePosTwistedTreeline").GetValue<StringList>().SelectedIndex)
+                        switch (SkyLv_Fountain.Menu.Item(Player.ChampionName.ToString() + ".FountainMovePosTwistedTreeline").GetValue<StringList>().SelectedIndex)
                         {
                             case 0:
                                 {
@@ -139,7 +139,7 @@
 
                     if (Player.Team == GameObjectTeam.Chaos)
                     {
-                        switch (SkyLv_FountainTravelling.Menu.Item(Player.ChampionName.ToString() + ".FountainMovePosTwistedTreeline").GetValue<StringList>().SelectedIndex)
+                        switch (SkyLv_Fountain.Menu.Item(Player.ChampionName.ToString() + ".FountainMovePosTwistedTreeline").GetValue<StringList>().SelectedIndex)
                         {
                             case 0:
                                 {
@@ -161,7 +161,7 @@
 
                 #region HowlingAbyss
 
-                if (Game.MapId == GameMapId.HowlingAbyss && SkyLv_FountainTravelling.Menu.Item(Player.ChampionName.ToString() + ".AutoMoveFountainMovePosHowlingAbyss").GetValue<bool>())
+                if (Game.MapId == GameMapId.HowlingAbyss && SkyLv_Fountain.Menu.Item(Player.ChampionName.ToString() + ".AutoMoveFountainMovePosHowlingAbyss").GetValue<bool>())
                 {
                     if (Player.Team == GameObjectTeam.Order)
                     {

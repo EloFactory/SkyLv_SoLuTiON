@@ -1,4 +1,4 @@
-﻿namespace SkyLv_FountainTravelling
+﻿namespace SkyLv_Fountain
 {
     using System;
 
@@ -11,7 +11,7 @@
         private static void Game_OnGameLoad(EventArgs args)
         {
 
-            new SkyLv_FountainTravelling();
+            new SkyLv_Fountain();
             
         }
 

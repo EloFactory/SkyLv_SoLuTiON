@@ -1,10 +1,10 @@
-﻿namespace SkyLv_FountainTravelling
+﻿namespace SkyLv_Fountain
 {
 
     using LeagueSharp;
     using LeagueSharp.Common;
 
-    internal class SkyLv_FountainTravelling
+    internal class SkyLv_Fountain
     {
 
         public static Menu Menu;
@@ -17,7 +17,7 @@
             }
         }
 
-        public SkyLv_FountainTravelling()
+        public SkyLv_Fountain()
         {
 
             Menu = new Menu("SkyLv Fountain Travelling By LuNi", "SkyLv Fountain Travelling By LuNi", true);
