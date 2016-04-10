@@ -92,7 +92,7 @@ namespace SkyLv_AurelionSol
                             W1.Cast(PacketCast);
                         }
 
-                        else if (MathsLib.enemyChampionInRange(600 + 300) == 0 && MathsLib.isWInLongRangeMode())
+                        else if (MathsLib.enemyChampionInRange(900) == 0 && MathsLib.isWInLongRangeMode())
                         {
                             W2.Cast(PacketCast);
                         }
