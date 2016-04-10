@@ -49,15 +49,11 @@
 
         private static void Game_OnUpdate(EventArgs args)
         {
-            KS();
+            JungleKS();
         }
 
-        #region KillSteal
-        public static void KS()
+        public static void JungleKS()
         {
-
-
-
             if (SkyLv_AurelionSol.Menu.Item("AurelionSol.JungleKS").GetValue<bool>())
             {
                 var useQKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseQJungleKS").GetValue<bool>();
@@ -76,6 +72,5 @@
                 }
             }
         }
-        #endregion
     }
 }
