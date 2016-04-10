@@ -72,7 +72,7 @@ namespace SkyLv_AurelionSol
             {
                 var target = TargetSelector.GetTarget(W2.Range + 50, TargetSelector.DamageType.Magical);
 
-                if (target != null)
+                if (target.IsValidTarget())
                 {
                     if (useQ && Q.IsReady())
                     {
