@@ -20,7 +20,7 @@
         public SkyLv_Fountain()
         {
 
-            Menu = new Menu("SkyLv Fountain Travelling By LuNi", "SkyLv Fountain Travelling By LuNi", true);
+            Menu = new Menu("SkyLv Fountain By LuNi", "SkyLv Fountain Travelling By LuNi", true);
 
             Menu.AddToMainMenu();
 
