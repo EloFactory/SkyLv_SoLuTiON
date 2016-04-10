@@ -102,7 +102,7 @@
             new AAManager();
             new OnUpdateFeatures();
             new CastOnDash();
-            new Activators();
+            //new Activators();
             new Combo();
             new Harass();
             new JungleClear();
