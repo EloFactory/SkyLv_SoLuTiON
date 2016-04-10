@@ -16,13 +16,13 @@
         public static Spell W2;
         public static Spell E;
         public static Spell R;
+        public static Spell Ignite;
 
         public static List<Spell> SpellList = new List<Spell>();
 
         public static SpellSlot HealSlot;
         public static SpellSlot BarrierSlot;
         public static SpellSlot CleanseSlot;
-        public static SpellSlot IgniteSlot;
 
         public static Items.Item SeraphsEmbrace = new Items.Item(3040, 0);
         public static Items.Item ZhonyasHourglass = new Items.Item(3157, 0);
@@ -63,7 +63,16 @@
             HealSlot = Player.GetSpellSlot("SummonerHeal");
             BarrierSlot = Player.GetSpellSlot("SummonerBarrier");
             CleanseSlot = Player.GetSpellSlot("SummonerBoost");
-            IgniteSlot = Player.GetSpellSlot("Summonerdot");
+            var IgniteSlot = Player.GetSpell(SpellSlot.Summoner1).Name.ToLower().Contains("summonerdot")
+                    ? SpellSlot.Summoner1
+                    : Player.GetSpell(SpellSlot.Summoner2).Name.ToLower().Contains("summonerdot")
+                          ? SpellSlot.Summoner2
+                          : SpellSlot.Unknown;
+
+            if (IgniteSlot != SpellSlot.Unknown)
+            {
+                Ignite = new Spell(IgniteSlot, 600f);
+            }
 
             SpellList.Add(Q);
             SpellList.Add(W1);
