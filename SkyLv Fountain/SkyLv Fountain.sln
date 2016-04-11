@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyLv Fountain", "SkyLv FountainTravelling\SkyLv Fountain.csproj", "{C94EA556-D800-4738-8307-9E4A5B34E075}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyLv Fountain", "SkyLv Fountain\SkyLv Fountain.csproj", "{C94EA556-D800-4738-8307-9E4A5B34E075}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
