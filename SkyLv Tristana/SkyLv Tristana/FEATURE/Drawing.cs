@@ -4,7 +4,7 @@
 
     using LeagueSharp;
     using LeagueSharp.Common;
-
+    using Color = System.Drawing.Color;
 
     internal class Draw
     {
@@ -53,12 +53,16 @@
         static Draw()
         {
             //Menu
-            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("QRange", "Q range").SetValue(new Circle(true, System.Drawing.Color.Orange)));
-            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("WRange", "W range").SetValue(new Circle(true, System.Drawing.Color.Green)));
-            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("ERange", "E range").SetValue(new Circle(true, System.Drawing.Color.Blue)));
-            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("RRange", "R range").SetValue(new Circle(true, System.Drawing.Color.Gold)));
-            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("DrawOrbwalkTarget", "Draw Orbwalk target").SetValue(new Circle(true, System.Drawing.Color.Pink)));
+            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("QRange", "Q range").SetValue(new Circle(true, Color.Orange)));
+            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("WRange", "W range").SetValue(new Circle(true, Color.Green)));
+            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("ERange", "E range").SetValue(new Circle(true, Color.Blue)));
+            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("RRange", "R range").SetValue(new Circle(true, Color.Gold)));
+            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("Tristana.DrawingsInsec", "Draw Insec").SetValue(new Circle(true, Color.OrangeRed)));
+            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("Tristana.DrawingsREndPosition", "Draw R End Position").SetValue(new Circle(false, Color.GreenYellow)));
+            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("DrawOrbwalkTarget", "Draw Orbwalk target").SetValue(new Circle(true, Color.Pink)));
             SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("SpellDraw.Radius", "Spell Draw Radius").SetValue(new Slider(10, 1, 20)));
+            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("Insec.Radius", "Insec Draw Radius").SetValue(new Slider(10, 1, 20)));
+            SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("REndPosition.Radius", "R End Position Draw Radius").SetValue(new Slider(10, 1, 20)));
             SkyLv_Tristana.Menu.SubMenu("Drawings").AddItem(new MenuItem("OrbwalkDraw.Radius", "Orbwalk Draw Radius").SetValue(new Slider(10, 1, 20)));
 
             Drawing.OnDraw += Drawing_OnDraw;
@@ -66,7 +70,6 @@
 
         public static void Drawing_OnDraw(EventArgs args)
         {
-
             foreach (var spell in SkyLv_Tristana.SpellList)
             {
                 var menuItem = SkyLv_Tristana.Menu.Item(spell.Slot + "Range").GetValue<Circle>();
@@ -82,6 +85,25 @@
                     Render.Circle.DrawCircle(orbT.Position, 100, SkyLv_Tristana.Menu.Item("DrawOrbwalkTarget").GetValue<Circle>().Color, SkyLv_Tristana.Menu.Item("OrbwalkDraw.Radius").GetValue<Slider>().Value);
             }
 
+            if (SkyLv_Tristana.Menu.Item("Tristana.DrawingsInsec").GetValue<Circle>().Active)
+            {
+                var target = CustomLib.GetTarget;
+                if (target != null)
+                {
+                    Drawing.DrawLine(Drawing.WorldToScreen(target.Position), Drawing.WorldToScreen(CustomLib.GetPushPosition(target)), SkyLv_Tristana.Menu.Item("Insec.Radius").GetValue<Slider>().Value, SkyLv_Tristana.Menu.Item("Tristana.DrawingsInsec").GetValue<Circle>().Color);
+                    Render.Circle.DrawCircle(target.Position, target.BoundingRadius * 1.35f, SkyLv_Tristana.Menu.Item("Tristana.DrawingsInsec").GetValue<Circle>().Color, SkyLv_Tristana.Menu.Item("Insec.Radius").GetValue<Slider>().Value);
+                    Render.Circle.DrawCircle(CustomLib.GetBehindPosition(target),target.BoundingRadius * 1.35f, SkyLv_Tristana.Menu.Item("Tristana.DrawingsInsec").GetValue<Circle>().Color, SkyLv_Tristana.Menu.Item("Insec.Radius").GetValue<Slider>().Value);
+                }
+            }
+
+            if (SkyLv_Tristana.Menu.Item("Tristana.DrawingsREndPosition").GetValue<Circle>().Active)
+            {
+                var target = TargetSelector.GetSelectedTarget();
+                if (target != null && R.IsReady())
+                {
+                    Render.Circle.DrawCircle(Player.Position.Extend(target.Position, Player.Distance(target) + CustomLib.RPushDistance()), target.BoundingRadius * 1.35f, SkyLv_Tristana.Menu.Item("Tristana.DrawingsREndPosition").GetValue<Circle>().Color, SkyLv_Tristana.Menu.Item("REndPosition.Radius").GetValue<Slider>().Value);
+                }
+            }
         }
     }
 }

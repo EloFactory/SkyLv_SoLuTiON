@@ -71,32 +71,30 @@
             var useQKS = SkyLv_Evelynn.Menu.Item("Evelynn.UseQKS").GetValue<bool>();
             var useEKS = SkyLv_Evelynn.Menu.Item("Evelynn.UseEKS").GetValue<bool>();
             var useRKS = SkyLv_Evelynn.Menu.Item("Evelynn.UseRKS").GetValue<bool>();
-            
-            foreach (var target in ObjectManager.Get<Obj_AI_Hero>().Where(target => !target.IsMe && target.Team != ObjectManager.Player.Team && !target.IsZombie && (SkyLv_Evelynn.Ignite.Slot != SpellSlot.Unknown || !target.HasBuff("summonerdot"))))
+
+            foreach (var target in ObjectManager.Get<Obj_AI_Hero>().Where(target => !target.IsMe && !target.IsDead && target.Team != ObjectManager.Player.Team && !target.IsZombie && (SkyLv_Evelynn.Ignite.Slot != SpellSlot.Unknown || !target.HasBuff("summonerdot"))))
             {
-                if (!target.IsDead)
+                if (useQKS && Q.GetDamage(target) > target.Health && Player.Distance(target) <= Q.Range)
                 {
-                    if (useQKS && Q.GetDamage(target) > target.Health && Player.Distance(target) <= Q.Range)
-                    {
-                        Q.Cast(target, PacketCast);
-                    }
+                    Q.Cast(target, PacketCast);
+                }
 
-                    if (useEKS && E.GetDamage(target) > target.Health && Player.Distance(target) <= E.Range)
-                    {
-                        E.Cast(target, PacketCast);
-                    }
+                if (useEKS && E.GetDamage(target) > target.Health && Player.Distance(target) <= E.Range)
+                {
+                    E.Cast(target, PacketCast);
+                }
 
-                    if (useRKS && R.GetDamage(target) > target.Health && Player.Distance(target) <= R.Range)
-                    {
-                        R.CastIfHitchanceEquals(target, HitChance.VeryHigh, PacketCast);
-                    }
+                if (useRKS && R.GetDamage(target) > target.Health && Player.Distance(target) <= R.Range)
+                {
+                    R.CastIfHitchanceEquals(target, HitChance.VeryHigh, PacketCast);
+                }
 
-                    if (useIgniteKS && SkyLv_Evelynn.Ignite.Slot != SpellSlot.Unknown && Player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite) > target.Health && Player.Distance(target) <= SkyLv_Evelynn.Ignite.Range)
-                    {
-                        Player.Spellbook.CastSpell(SkyLv_Evelynn.Ignite.Slot, target);
-                    }
+                if (useIgniteKS && SkyLv_Evelynn.Ignite.Slot != SpellSlot.Unknown && target.Health < Player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite) && Player.Distance(target) <= SkyLv_Evelynn.Ignite.Range)
+                {
+                    SkyLv_Evelynn.Ignite.Cast(target, true);
                 }
             }
+            
         }
 
     }

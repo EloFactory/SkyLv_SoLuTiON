@@ -5,7 +5,7 @@
     using LeagueSharp;
     using LeagueSharp.Common;
 
-    public static class MathsLib
+    public static class CustomLib
     {
         #region #GET
         private static Obj_AI_Hero Player

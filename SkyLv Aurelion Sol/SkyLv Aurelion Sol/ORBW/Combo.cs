@@ -39,6 +39,14 @@ namespace SkyLv_AurelionSol
                 return SkyLv_AurelionSol.W2;
             }
         }
+
+        private static Spell R
+        {
+            get
+            {
+                return SkyLv_AurelionSol.R;
+            }
+        }
         #endregion
 
 
@@ -47,6 +55,8 @@ namespace SkyLv_AurelionSol
             //Menu
             SkyLv_AurelionSol.Menu.SubMenu("Combo").AddItem(new MenuItem("AurelionSol.UseQCombo", "Use Q In Combo").SetValue(true));
             SkyLv_AurelionSol.Menu.SubMenu("Combo").AddItem(new MenuItem("AurelionSol.UseWCombo", "Use W In Combo").SetValue(true));
+            SkyLv_AurelionSol.Menu.SubMenu("Combo").AddItem(new MenuItem("AurelionSol.UseRCombo", "Use R In Combo").SetValue(true));
+            SkyLv_AurelionSol.Menu.SubMenu("Combo").AddItem(new MenuItem("AurelionSol.MinimumEnemyHitComboR", "Minimum Enemy Hit To Use R In Combo").SetValue(new Slider(2, 1, 5)));
             SkyLv_AurelionSol.Menu.SubMenu("Combo").AddItem(new MenuItem("AurelionSol.UsePacketCastCombo", "Use PacketCast In Combo").SetValue(false));
 
             Game.OnUpdate += Game_OnUpdate;
@@ -62,8 +72,8 @@ namespace SkyLv_AurelionSol
             var PacketCast = SkyLv_AurelionSol.Menu.Item("AurelionSol.UsePacketCastCombo").GetValue<bool>();
             var useQ = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseQCombo").GetValue<bool>();
             var useW = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseWCombo").GetValue<bool>();
-
-
+            var useR = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseRCombo").GetValue<bool>();
+            var MinimumEnemyHitComboR = SkyLv_AurelionSol.Menu.Item("AurelionSol.MinimumEnemyHitComboR").GetValue<Slider>().Value;
 
             if (SkyLv_AurelionSol.Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
             {
@@ -71,28 +81,29 @@ namespace SkyLv_AurelionSol
 
                 if (target.IsValidTarget())
                 {
-                    if (useQ && Q.IsReady())
+                    if (useR && R.IsReady() && Player.Mana >= R.ManaCost)
                     {
-                        var prediction = Q.GetPrediction(target);
-                        if (prediction.Hitchance >= HitChance.High)
-                        {
-                            Q.Cast(prediction.CastPosition, PacketCast);
-                        }
+                        R.CastIfWillHit(target, MinimumEnemyHitComboR, PacketCast);
+                    }
+
+                    if (useQ && Q.IsReady() && Player.Mana >= Q.ManaCost)
+                    {
+                        Q.CastIfHitchanceEquals(target, HitChance.VeryHigh, PacketCast);
                     }
 
                     if (useW)
                     {
-                        if (target.Distance(Player) <= W1.Range + 50 && MathsLib.isWInLongRangeMode())
+                        if (target.Distance(Player) <= W1.Range + 50 && CustomLib.isWInLongRangeMode())
                         {
                             W2.Cast(PacketCast);
                         }
 
-                        if (target.Distance(Player) > W1.Range + 50 && target.Distance(Player) < W2.Range + 50 && !MathsLib.isWInLongRangeMode())
+                        if (target.Distance(Player) > W1.Range + 50 && target.Distance(Player) < W2.Range + 50 && !CustomLib.isWInLongRangeMode())
                         {
                             W1.Cast(PacketCast);
                         }
 
-                        else if (MathsLib.enemyChampionInRange(900) == 0 && MathsLib.isWInLongRangeMode())
+                        else if (CustomLib.enemyChampionInRange(900) == 0 && CustomLib.isWInLongRangeMode())
                         {
                             W2.Cast(PacketCast);
                         }

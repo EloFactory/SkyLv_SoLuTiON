@@ -3,7 +3,9 @@
 
     using LeagueSharp;
     using LeagueSharp.Common;
+    using SharpDX;
 
+    using System.Linq;
     using System.Collections.Generic;
 
     internal class SkyLv_Tristana
@@ -15,13 +17,17 @@
         public static Spell W;
         public static Spell E;
         public static Spell R;
-        public static Spell Ignite;
+        public static Spell Ignite = new Spell(SpellSlot.Unknown, 600);
+        public static SpellSlot FlashSlot;
+
+        public static int lastQ, lastW, lastE, lastR, lastAA;
+        public static int lastInsec;
+        public static Vector3 REndPosition;
 
         public static bool ERKSState = false;
+        public static bool InsecState = false;
 
         public static List<Spell> SpellList = new List<Spell>();
-
-        public static List<Obj_AI_Hero> Enemies = new List<Obj_AI_Hero>(), Allies = new List<Obj_AI_Hero>();
 
         public const string ChampionName = "Tristana";
 
@@ -52,21 +58,16 @@
 
             W.SetSkillshot(0.35f, 250f, 1400f, false, SkillshotType.SkillshotCircle);
 
-            var IgniteSlot = Player.GetSpell(SpellSlot.Summoner1).Name.ToLower().Contains("summonerdot")
-                    ? SpellSlot.Summoner1
-                    : Player.GetSpell(SpellSlot.Summoner2).Name.ToLower().Contains("summonerdot")
-                          ? SpellSlot.Summoner2
-                          : SpellSlot.Unknown;
-
-            if (IgniteSlot != SpellSlot.Unknown)
-            {
-                Ignite = new Spell(IgniteSlot, 600f);
-            }
-
             SpellList.Add(Q);
             SpellList.Add(W);
             SpellList.Add(E);
             SpellList.Add(R);
+
+            FlashSlot = Player.GetSpellSlot("summonerflash");
+
+            var ignite = Player.Spellbook.Spells.FirstOrDefault(spell => spell.Name == "summonerdot");
+            if (ignite != null)
+                Ignite.Slot = ignite.Slot;
 
             Menu = new Menu("SkyLv " + ChampionName + " By LuNi", "SkyLv " + ChampionName + " By LuNi", true);
 
@@ -80,6 +81,8 @@
 
             Menu.AddSubMenu(new Menu("Combo", "Combo"));
 
+            Menu.AddSubMenu(new Menu("Insec", "Insec"));
+
             Menu.AddSubMenu(new Menu("Harass", "Harass"));
 
             Menu.AddSubMenu(new Menu("LaneClear", "LaneClear"));
@@ -92,11 +95,13 @@
 
             Menu.AddToMainMenu();
 
+            new SpellTimer();
+            new KillSteal();
+            new JungleSteal();
             new Interrupter();
             new AfterAttack();
             new AntiGapCLoser();
-            new KillSteal();
-            new JungleSteal();
+            new Insec();
             new Combo();
             new Harass();
             new JungleClear();

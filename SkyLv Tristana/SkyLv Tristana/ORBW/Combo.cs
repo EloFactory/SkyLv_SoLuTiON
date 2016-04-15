@@ -25,14 +25,6 @@
             }
         }
 
-        private static Spell W
-        {
-            get
-            {
-                return SkyLv_Tristana.W;
-            }
-        }
-
         private static Spell E
         {
             get

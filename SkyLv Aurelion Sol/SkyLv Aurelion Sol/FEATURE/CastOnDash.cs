@@ -44,7 +44,7 @@ namespace SkyLv_AurelionSol
             if (sender.NetworkId == target.NetworkId)
             {
 
-                if (Q.IsReady() && Player.Distance(args.EndPos) > 550 && Player.Distance(sender) < Q.Range)
+                if (Q.IsReady() && Player.Distance(sender) < Q.Range && Player.Mana >= Q.ManaCost)
                 {
                     var delay = (int)(args.EndTick - Game.Time - Q.Delay - 0.1f);
                     if (delay > 0)

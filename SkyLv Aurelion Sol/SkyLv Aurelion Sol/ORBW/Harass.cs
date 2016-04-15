@@ -84,26 +84,22 @@ namespace SkyLv_AurelionSol
 
                 if (useQ && Q.IsReady() && Player.Mana >= Q.ManaCost && Player.ManaPercent > MiniManaQ)
                 {
-                    var prediction = Q.GetPrediction(target);
-                    if (prediction.Hitchance >= HitChance.High)
-                    {
-                        Q.Cast(prediction.CastPosition, PacketCast);
-                    }
+                    Q.CastIfHitchanceEquals(target, HitChance.VeryHigh, PacketCast);
                 }
 
                 if (useW && W1.IsReady() && Player.ManaPercent > MiniManaW)
                 {
-                    if (Player.ManaPercent <= MiniManaW && MathsLib.isWInLongRangeMode())
+                    if (Player.ManaPercent <= MiniManaW && CustomLib.isWInLongRangeMode())
                     {
                         W2.Cast(PacketCast);
                     }
 
-                    if (Player.Distance(target) > W1.Range - 20 && Player.Distance(target) < W1.Range + 20 && MathsLib.isWInLongRangeMode())
+                    if (Player.Distance(target) > W1.Range - 20 && Player.Distance(target) < W1.Range + 20 && CustomLib.isWInLongRangeMode())
                     {
                         W2.Cast(PacketCast);
                     }
 
-                    if (Player.Distance(target) > W2.Range - 20 && Player.Distance(target) < W2.Range + 20 && !MathsLib.isWInLongRangeMode() && Player.ManaPercent > MiniManaW)
+                    if (Player.Distance(target) > W2.Range - 20 && Player.Distance(target) < W2.Range + 20 && !CustomLib.isWInLongRangeMode() && Player.ManaPercent > MiniManaW)
                     {
                         W1.Cast(PacketCast);
                     }

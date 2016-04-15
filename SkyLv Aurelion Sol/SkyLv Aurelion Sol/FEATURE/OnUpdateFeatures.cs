@@ -72,7 +72,7 @@ namespace SkyLv_AurelionSol
             var AutoWManager = SkyLv_AurelionSol.Menu.Item("AurelionSol.AutoManageW").GetValue<bool>();
             if (AutoWManager)
             {
-                if (MathsLib.enemyChampionInRange(600 + 300) == 0 && MathsLib.isWInLongRangeMode())
+                if (CustomLib.enemyChampionInRange(600 + 300) == 0 && CustomLib.isWInLongRangeMode())
                 {
                     W2.Cast(PacketCast);
                 }
@@ -81,11 +81,11 @@ namespace SkyLv_AurelionSol
 
         public static void AutoR()
         {
-            var target = TargetSelector.GetTarget(W2.Range + 50, TargetSelector.DamageType.Magical);
+            var target = TargetSelector.GetTarget(R.Range, TargetSelector.DamageType.Magical);
             var MinimumEnemyHitAutoR = SkyLv_AurelionSol.Menu.Item("AurelionSol.MinimumEnemyHitAutoR").GetValue<Slider>().Value;
             var PacketCast = SkyLv_AurelionSol.Menu.Item("AurelionSol.UsePacketCastCombo").GetValue<bool>();
 
-            if (R.IsReady())
+            if (R.IsReady() && Player.Mana >= R.ManaCost)
             {
                 R.CastIfWillHit(target, MinimumEnemyHitAutoR, PacketCast);
             }

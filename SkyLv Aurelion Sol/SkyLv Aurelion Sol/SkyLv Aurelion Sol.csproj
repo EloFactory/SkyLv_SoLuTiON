@@ -34,13 +34,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LeagueSharp">
-      <HintPath>F:\LeagueSharp\System\LeagueSharp.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\LeagueSharp\System\LeagueSharp.dll</HintPath>
     </Reference>
     <Reference Include="LeagueSharp.Common">
-      <HintPath>F:\LeagueSharp\System\LeagueSharp.Common.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\LeagueSharp\System\LeagueSharp.Common.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
-      <HintPath>F:\LeagueSharp\System\SharpDX.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\LeagueSharp\System\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FEATURE\AAManager.cs" />
-    <Compile Include="FEATURE\Activators.cs" />
     <Compile Include="FEATURE\AntiGapCloser.cs" />
     <Compile Include="FEATURE\CastOnDash.cs" />
     <Compile Include="FEATURE\Drawing.cs" />
@@ -67,7 +66,7 @@
     <Compile Include="FEATURE\SkinChanger.cs" />
     <Compile Include="FEATURE\SpellLeveler.cs" />
     <Compile Include="Initialiser.cs" />
-    <Compile Include="MathsLib.cs" />
+    <Compile Include="CustomLib.cs" />
     <Compile Include="ORBW\Combo.cs" />
     <Compile Include="ORBW\Harass.cs" />
     <Compile Include="ORBW\JungleClear.cs" />

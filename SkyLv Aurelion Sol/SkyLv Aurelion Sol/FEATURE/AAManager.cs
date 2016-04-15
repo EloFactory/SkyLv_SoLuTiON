@@ -27,7 +27,7 @@
         {
             if (SkyLv_AurelionSol.Menu.Item("AurelionSol.DisableAAWhenW").GetValue<bool>() && SkyLv_AurelionSol.Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
             {
-                if (MathsLib.isWInLongRangeMode())
+                if (CustomLib.isWInLongRangeMode())
                 {
                     SkyLv_AurelionSol.Orbwalker.SetAttack(false);
                 }

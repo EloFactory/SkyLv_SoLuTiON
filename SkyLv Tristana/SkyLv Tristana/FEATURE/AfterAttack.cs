@@ -41,7 +41,7 @@
             SkyLv_Tristana.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Tristana.AfterAttackModeLaneClear", "Cancel Spell With AA In LaneClear").SetValue(true));
             SkyLv_Tristana.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Tristana.AfterAttackModeJungleClear", "Cancel Spell With AA In JungleClear").SetValue(true));
 
-            Orbwalking.AfterAttack += Orbwalking_AfterAttack; ;
+            Orbwalking.AfterAttack += Orbwalking_AfterAttack;
         }
 
         public static void Orbwalking_AfterAttack(AttackableUnit unit, AttackableUnit target)
@@ -66,7 +66,7 @@
             #endregion
 
             #region Harass
-            if (SkyLv_Tristana.Menu.Item("Tristana.AfterAttackModeHarass").GetValue<bool>() && (SkyLv_Tristana.Menu.Item("Tristana.HarassActive").GetValue<KeyBind>().Active || SkyLv_Tristana.Menu.Item("Tristana.HarassActiveT").GetValue<KeyBind>().Active))
+            if (SkyLv_Tristana.Menu.Item("Tristana.AfterAttackModeHarass").GetValue<bool>() && (SkyLv_Tristana.Menu.Item("Tristana.HarassActive").GetValue<KeyBind>().Active || SkyLv_Tristana.Menu.Item("Tristana.HarassActive2").GetValue<KeyBind>().Active || SkyLv_Tristana.Menu.Item("Tristana.HarassActiveT").GetValue<KeyBind>().Active))
             {
 
                 var PacketCast = SkyLv_Tristana.Menu.Item("Tristana.UsePacketCastHarass").GetValue<bool>();
@@ -76,14 +76,17 @@
                 var useE = SkyLv_Tristana.Menu.Item("Tristana.UseEHarass").GetValue<bool>();
                 var MiniManaE = SkyLv_Tristana.Menu.Item("Tristana.EMiniManaHarass").GetValue<Slider>().Value;
 
-                var t = (Obj_AI_Hero)target;
-                if (t.IsValidTarget())
+                if (target is Obj_AI_Hero)
                 {
-                    if (useE && E.IsReady() && target.IsValidTarget(E.Range) && Player.ManaPercent > MiniManaE)
-                        E.CastOnUnit(t, PacketCast);
+                    var t = (Obj_AI_Hero)target;
+                    if (t.IsValidTarget())
+                    {
+                        if (useE && E.IsReady() && target.IsValidTarget(E.Range) && Player.ManaPercent > MiniManaE)
+                            E.CastOnUnit(t, PacketCast);
 
-                    if (useQ && Q.IsReady() && target.IsValidTarget(Orbwalking.GetRealAutoAttackRange(Player)) && Player.ManaPercent > MiniManaQ)
-                        Q.Cast(PacketCast);
+                        if (useQ && Q.IsReady() && target.IsValidTarget(Orbwalking.GetRealAutoAttackRange(Player)) && Player.ManaPercent > MiniManaQ)
+                            Q.Cast(PacketCast);
+                    }
                 }
             }
             #endregion

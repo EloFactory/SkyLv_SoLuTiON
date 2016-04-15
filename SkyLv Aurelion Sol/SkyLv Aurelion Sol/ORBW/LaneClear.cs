@@ -102,12 +102,12 @@
                     var allMinionsW1 = MinionManager.GetMinions(Player.Position + W1.Range - 20, W1.Range + 20, MinionTypes.All, MinionTeam.Enemy);
                     var allMinionsW2 = MinionManager.GetMinions(Player.Position + W2.Range - 20, W2.Range + 20, MinionTypes.All, MinionTeam.Enemy);
 
-                    if (Player.ManaPercent <= MiniManaW && MathsLib.isWInLongRangeMode())
+                    if (Player.ManaPercent <= MiniManaW && CustomLib.isWInLongRangeMode())
                     {
                         W2.Cast(PacketCast);
                     }
 
-                    if (allMinionsW1.Any() && MathsLib.isWInLongRangeMode())
+                    if (allMinionsW1.Any() && CustomLib.isWInLongRangeMode())
                     {
                         var farmAll = W1.GetCircularFarmLocation(allMinionsW1);
                         if (farmAll.MinionsHit >= MiniCountW)
@@ -116,7 +116,7 @@
                         }
                     }
 
-                    if (allMinionsW2.Any() && !MathsLib.isWInLongRangeMode() && Player.ManaPercent > MiniManaW)
+                    if (allMinionsW2.Any() && !CustomLib.isWInLongRangeMode() && Player.ManaPercent > MiniManaW)
                     {
                         var farmAll = W2.GetCircularFarmLocation(allMinionsW2);
                         if (farmAll.MinionsHit >= MiniCountW)

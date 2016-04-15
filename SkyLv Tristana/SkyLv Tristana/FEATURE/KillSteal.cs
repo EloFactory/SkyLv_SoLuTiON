@@ -42,54 +42,64 @@
         {
             //Menu
             SkyLv_Tristana.Menu.SubMenu("Combo").AddSubMenu(new Menu("KS Mode", "KS Mode"));
-            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Tristana.UseIgniteKS", "KS With Ignite").SetValue(true));
-            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Tristana.UseEKS", "KS With E").SetValue(true));
-            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Tristana.UseRKS", "KS With R").SetValue(false));
+            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Tristana.KS", "Kill Steal").SetValue(false));
             SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Tristana.PacketCastKS", "PacketCast KS").SetValue(false));
+            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").AddSubMenu(new Menu("Spell Settings", "Spell Settings"));
+            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").SubMenu("Spell Settings").AddItem(new MenuItem("Tristana.UseAAKS", "KS With AA").SetValue(true));
+            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").SubMenu("Spell Settings").AddItem(new MenuItem("Tristana.UseIgniteKS", "KS With Ignite").SetValue(true));
+            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").SubMenu("Spell Settings").AddItem(new MenuItem("Tristana.UseEKS", "KS With E").SetValue(true));
+            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").SubMenu("Spell Settings").AddItem(new MenuItem("Tristana.UseRKS", "KS With R").SetValue(false));
+            
 
             Game.OnUpdate += Game_OnUpdate;
         }
 
         private static void Game_OnUpdate(EventArgs args)
         {
-            KS();
+            if (SkyLv_Tristana.Menu.Item("Tristana.KS").GetValue<bool>())
+            {
+                HeroKillSteal();
+            }
         }
 
-        #region KillSteal
-        public static void KS()
+        public static void HeroKillSteal()
         {
-            var PacketCast = SkyLv_Tristana.Menu.Item("Tristana.PacketCastKS").GetValue<bool>();
-            var useIgniteKS = SkyLv_Tristana.Menu.Item("Tristana.UseIgniteKS").GetValue<bool>();
-            var useEKS = SkyLv_Tristana.Menu.Item("Tristana.UseEKS").GetValue<bool>();
-            var useRKS = SkyLv_Tristana.Menu.Item("Tristana.UseRKS").GetValue<bool>();
+            var PacketCastKS = SkyLv_Tristana.Menu.Item("Tristana.PacketCastKS").GetValue<bool>();
+            var UseAAKS = SkyLv_Tristana.Menu.Item("Tristana.UseAAKS").GetValue<bool>();
+            var UseIgniteKS = SkyLv_Tristana.Menu.Item("Tristana.UseIgniteKS").GetValue<bool>();
+            var UseEKS = SkyLv_Tristana.Menu.Item("Tristana.UseEKS").GetValue<bool>();
+            var UseRKS = SkyLv_Tristana.Menu.Item("Tristana.UseRKS").GetValue<bool>();
 
-            foreach (var target in ObjectManager.Get<Obj_AI_Hero>().Where(target => !target.IsMe && target.Team != ObjectManager.Player.Team && target.Distance(Player) < 1200 && !target.IsZombie && (SkyLv_Tristana.Ignite.Slot != SpellSlot.Unknown || !target.HasBuff("summonerdot"))))
+            foreach (var target in ObjectManager.Get<Obj_AI_Hero>().Where(target => !target.IsMe && !target.IsDead && target.Team != ObjectManager.Player.Team && !target.IsZombie && (SkyLv_Tristana.Ignite.Slot != SpellSlot.Unknown || !target.HasBuff("summonerdot"))))
             {
-
-                if (useEKS && E.GetDamage(target) > target.Health)
+                if (UseAAKS && Orbwalking.CanAttack() && Player.GetAutoAttackDamage(target) > target.Health && target.IsValidTarget(Orbwalking.GetRealAutoAttackRange(Player) * 1.2f))
                 {
-                    E.Cast(target, PacketCast);
+                    Player.IssueOrder(GameObjectOrder.AttackUnit, target);
+                }
+                
+                if (UseEKS && E.GetDamage(target) > target.Health && target.Distance(Player) <= E.Range)
+                {
+                    E.Cast(target, PacketCastKS);
                 }
 
-                if (useRKS && (R.GetDamage(target) > target.Health || (SkyLv_Tristana.ERKSState == true && target.HasBuff("TristanaECharge"))))
+                if (UseRKS && target.Distance(Player) <= R.Range && (R.GetDamage(target) > target.Health || (SkyLv_Tristana.ERKSState == true && target.HasBuff("TristanaECharge"))))
                 {
-                    R.CastIfHitchanceEquals(target, HitChance.VeryHigh, PacketCast);
+                    R.CastIfHitchanceEquals(target, HitChance.VeryHigh, PacketCastKS);
                     SkyLv_Tristana.ERKSState = false;
                 }
 
-                if (useEKS && useRKS && E.GetDamage(target) + R.GetDamage(target) > target.Health && E.IsReady() && R.IsReady() && Player.Mana > E.ManaCost + R.ManaCost)
+                if (UseEKS && target.Distance(Player) <= E.Range && UseRKS && E.GetDamage(target) + R.GetDamage(target) > target.Health && E.IsReady() && R.IsReady() && Player.Mana > E.ManaCost + R.ManaCost)
                 {
-                    E.Cast(target, PacketCast);
+                    E.Cast(target, PacketCastKS);
                     SkyLv_Tristana.ERKSState = true;
                 }
 
-                if (useIgniteKS && SkyLv_Tristana.Ignite.Slot != SpellSlot.Unknown && Player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite) > target.Health)
+                if (UseIgniteKS && SkyLv_Tristana.Ignite.Slot != SpellSlot.Unknown && target.Health < Player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite) && Player.Distance(target) <= SkyLv_Tristana.Ignite.Range)
                 {
-                    Player.Spellbook.CastSpell(SkyLv_Tristana.Ignite.Slot, target);
+                    SkyLv_Tristana.Ignite.Cast(target, true);
                 }
 
             }
         }
-        #endregion
     }
 }

@@ -57,7 +57,7 @@
             //Menu
             SkyLv_Tristana.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Tristana.UseQLaneClear", "Use Q in LaneClear").SetValue(true));
             SkyLv_Tristana.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Tristana.QMiniManaLaneClear", "Minimum Mana To Use Q In LaneClear").SetValue(new Slider(0, 0, 100)));
-            SkyLv_Tristana.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Tristana.QLaneClearCount", "Minimum Minion To Use Q In LaneClear").SetValue(new Slider(6, 1, 6)));
+            SkyLv_Tristana.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Tristana.QLaneClearCount", "Minimum Minion To Use Q In LaneClear").SetValue(new Slider(8, 1, 10)));
             SkyLv_Tristana.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Tristana.UseELaneClear", "Use E in LaneClear").SetValue(true));
             SkyLv_Tristana.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Tristana.EMiniManaLaneClear", "Minimum Mana To Use E In LaneClear").SetValue(new Slider(0, 0, 100)));
             SkyLv_Tristana.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Tristana.ELaneClearCount", "Minimum Minion To Use E In LaneClear").SetValue(new Slider(3, 1, 6)));

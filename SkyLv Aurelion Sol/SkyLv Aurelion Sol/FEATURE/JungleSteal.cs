@@ -61,7 +61,7 @@
 
                 foreach (var target in ObjectManager.Get<Obj_AI_Base>().Where(target => Monsters.Contains(target.BaseSkinName)))
                 {
-                    if (useQKS && Q.IsReady() && target.Health < MathsLib.QDamage(target) && Player.Distance(target) < Q.Range && !target.IsDead && target.IsValidTarget())
+                    if (useQKS && Q.IsReady() && target.Health < CustomLib.QDamage(target) && Player.Distance(target) < Q.Range && !target.IsDead && target.IsValidTarget())
                     {
                         var prediction = Q.GetPrediction(target);
                         if (prediction.Hitchance >= HitChance.High)

@@ -25,27 +25,11 @@
             }
         }
 
-        private static Spell W
-        {
-            get
-            {
-                return SkyLv_Tristana.W;
-            }
-        }
-
         private static Spell E
         {
             get
             {
                 return SkyLv_Tristana.E;
-            }
-        }
-
-        private static Spell R
-        {
-            get
-            {
-                return SkyLv_Tristana.R;
             }
         }
         #endregion
@@ -60,7 +44,8 @@
             SkyLv_Tristana.Menu.SubMenu("Harass").AddItem(new MenuItem("Tristana.UseEHarass", "Use E In Harass").SetValue(true));
             SkyLv_Tristana.Menu.SubMenu("Harass").AddItem(new MenuItem("Tristana.EMiniManaHarass", "Minimum Mana To Use E In Harass").SetValue(new Slider(0, 0, 100)));
             SkyLv_Tristana.Menu.SubMenu("Harass").AddItem(new MenuItem("Tristana.UsePacketCastHarass", "Use PacketCast In Harass").SetValue(false));
-            SkyLv_Tristana.Menu.SubMenu("Harass").AddItem(new MenuItem("Tristana.HarassActive", "Harass!").SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
+            SkyLv_Tristana.Menu.SubMenu("Harass").AddItem(new MenuItem("Tristana.HarassActive", "Harass Key!").SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
+            SkyLv_Tristana.Menu.SubMenu("Harass").AddItem(new MenuItem("Tristana.HarassActive2", "Harass Key 2!").SetValue(new KeyBind("V".ToCharArray()[0], KeyBindType.Press)));
             SkyLv_Tristana.Menu.SubMenu("Harass").AddItem(new MenuItem("Tristana.HarassActiveT", "Harass (toggle)!").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle)));
 
 
@@ -69,7 +54,7 @@
 
         private static void Game_OnUpdate(EventArgs args)
         {
-            if (!SkyLv_Tristana.Menu.Item("Tristana.AfterAttackModeHarass").GetValue<bool>() && (SkyLv_Tristana.Menu.Item("Tristana.HarassActive").GetValue<KeyBind>().Active || SkyLv_Tristana.Menu.Item("Tristana.HarassActiveT").GetValue<KeyBind>().Active))
+            if (!SkyLv_Tristana.Menu.Item("Tristana.AfterAttackModeHarass").GetValue<bool>() && (SkyLv_Tristana.Menu.Item("Tristana.HarassActive").GetValue<KeyBind>().Active || SkyLv_Tristana.Menu.Item("Tristana.HarassActive2").GetValue<KeyBind>().Active || SkyLv_Tristana.Menu.Item("Tristana.HarassActiveT").GetValue<KeyBind>().Active))
             {
                 HarassLogic();
             }

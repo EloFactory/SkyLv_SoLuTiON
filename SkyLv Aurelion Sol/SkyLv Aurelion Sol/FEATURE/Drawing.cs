@@ -80,12 +80,12 @@
                 var menuItem = SkyLv_AurelionSol.Menu.Item(spell.Slot + "Range").GetValue<Circle>();
                 if (menuItem.Active && spell.Slot == SpellSlot.W)
                 {
-                    if (MathsLib.isWInLongRangeMode())
+                    if (CustomLib.isWInLongRangeMode())
                     {
                         Render.Circle.DrawCircle(Player.Position, W2.Range, menuItem.Color, SkyLv_AurelionSol.Menu.Item("SpellDraw.Radius").GetValue<Slider>().Value);
                     }
 
-                    if (!MathsLib.isWInLongRangeMode())
+                    if (!CustomLib.isWInLongRangeMode())
                     {
                         Render.Circle.DrawCircle(Player.Position, W1.Range, menuItem.Color, SkyLv_AurelionSol.Menu.Item("SpellDraw.Radius").GetValue<Slider>().Value);
                     }

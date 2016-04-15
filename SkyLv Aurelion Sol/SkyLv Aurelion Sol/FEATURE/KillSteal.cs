@@ -75,50 +75,39 @@ namespace SkyLv_AurelionSol
         public static void KS()
         {
             var PacketCast = SkyLv_AurelionSol.Menu.Item("AurelionSol.PacketCastKS").GetValue<bool>();
-            var useIgniteKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseIgniteKS").GetValue<bool>();
-            var useQKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseQKS").GetValue<bool>();
-            var useWKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseWKS").GetValue<bool>();
-            var useRKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseRKS").GetValue<bool>();
+            var UseIgniteKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseIgniteKS").GetValue<bool>();
+            var UseQKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseQKS").GetValue<bool>();
+            var UseWKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseWKS").GetValue<bool>();
+            var UseRKS = SkyLv_AurelionSol.Menu.Item("AurelionSol.UseRKS").GetValue<bool>();
 
-            foreach (var target in ObjectManager.Get<Obj_AI_Hero>().Where(target => !target.IsMe && target.Team != ObjectManager.Player.Team && !target.IsZombie && (SkyLv_AurelionSol.Ignite.Slot != SpellSlot.Unknown || !target.HasBuff("summonerdot"))))
+            foreach (var target in ObjectManager.Get<Obj_AI_Hero>().Where(target => !target.IsMe && !target.IsDead && target.Team != ObjectManager.Player.Team && !target.IsZombie && (SkyLv_AurelionSol.Ignite.Slot != SpellSlot.Unknown || !target.HasBuff("summonerdot"))))
             {
-                if (!target.IsDead)
+                if (UseQKS && Player.Distance(target) <= Q.Range && Q.IsReady() && target.Health < CustomLib.QDamage(target) && Player.Mana >= Q.ManaCost)
                 {
-                    if (useQKS && Q.IsReady() && target.Health < MathsLib.QDamage(target))
+                    Q.CastIfHitchanceEquals(target, HitChance.VeryHigh, PacketCast);
+                }
+
+                if (UseWKS && W1.IsReady() && target.Health < W1.GetDamage(target))
+                {
+                    if (Player.Distance(target) > W1.Range - 20 && Player.Distance(target) < W1.Range + 20 && CustomLib.isWInLongRangeMode())
                     {
-                        var prediction = Q.GetPrediction(target);
-                        if (prediction.Hitchance >= HitChance.High)
-                        {
-                            Q.Cast(prediction.CastPosition, PacketCast);
-                        }
+                        W2.Cast(PacketCast);
                     }
 
-                    if (useWKS && W1.IsReady() && target.Health < W1.GetDamage(target))
+                    if (Player.Distance(target) > W2.Range - 20 && Player.Distance(target) < W2.Range + 20 && !CustomLib.isWInLongRangeMode())
                     {
-                        if (Player.Distance(target) > W1.Range - 20 && Player.Distance(target) < W1.Range + 20 && MathsLib.isWInLongRangeMode())
-                        {
-                            W2.Cast(PacketCast);
-                        }
-
-                        if (Player.Distance(target) > W2.Range - 20 && Player.Distance(target) < W2.Range + 20 && !MathsLib.isWInLongRangeMode())
-                        {
-                            W1.Cast(PacketCast);
-                        }
+                        W1.Cast(PacketCast);
                     }
+                }
 
-                    if (useRKS && R.IsReady() && target.Health < MathsLib.RDamage(target))
-                    {
-                        var prediction = R.GetPrediction(target);
-                        if (prediction.Hitchance == HitChance.VeryHigh)
-                        {
-                            R.Cast(prediction.CastPosition, PacketCast);
-                        }
-                    }
+                if (UseRKS && Player.Distance(target) <= R.Range && R.IsReady() && target.Health < CustomLib.RDamage(target) && Player.Mana >= R.ManaCost)
+                {
+                    R.CastIfHitchanceEquals(target, HitChance.VeryHigh, PacketCast);
+                }
 
-                    if (useIgniteKS && SkyLv_AurelionSol.Ignite.Slot != SpellSlot.Unknown && Player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite) > target.Health && Player.Distance(target) <= SkyLv_AurelionSol.Ignite.Range)
-                    {
-                        Player.Spellbook.CastSpell(SkyLv_AurelionSol.Ignite.Slot, target);
-                    }
+                if (UseIgniteKS && SkyLv_AurelionSol.Ignite.Slot != SpellSlot.Unknown && target.Health < Player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite) && Player.Distance(target) <= SkyLv_AurelionSol.Ignite.Range)
+                {
+                    SkyLv_AurelionSol.Ignite.Cast(target, true);
                 }
             }
         }

@@ -4,6 +4,7 @@
     using LeagueSharp;
     using LeagueSharp.Common;
 
+    using System.Linq;
     using System.Collections.Generic;
 
     internal class SkyLv_Evelynn
@@ -15,7 +16,7 @@
         public static Spell W;
         public static Spell E;
         public static Spell R;
-        public static Spell Ignite;
+        public static Spell Ignite = new Spell(SpellSlot.Unknown, 600);
 
         public static List<Spell> SpellList = new List<Spell>();
 
@@ -43,16 +44,9 @@
 
             R.SetSkillshot(0.25f, 300f, float.MaxValue, false, SkillshotType.SkillshotCircle);
 
-            var IgniteSlot = Player.GetSpell(SpellSlot.Summoner1).Name.ToLower().Contains("summonerdot")
-                    ? SpellSlot.Summoner1
-                    : Player.GetSpell(SpellSlot.Summoner2).Name.ToLower().Contains("summonerdot")
-                          ? SpellSlot.Summoner2
-                          : SpellSlot.Unknown;
-
-            if (IgniteSlot != SpellSlot.Unknown)
-            {
-                Ignite = new Spell(IgniteSlot, 600f);
-            }
+            var ignite = Player.Spellbook.Spells.FirstOrDefault(spell => spell.Name == "summonerdot");
+            if (ignite != null)
+                Ignite.Slot = ignite.Slot;
 
             SpellList.Add(Q);
             SpellList.Add(W);
