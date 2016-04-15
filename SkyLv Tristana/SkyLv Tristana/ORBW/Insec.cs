@@ -37,9 +37,6 @@
         }
         #endregion
 
-        private static bool CanInsecWithW => R.IsReady() && W.IsReady() && Player.Distance(TargetSelector.SelectedTarget.ServerPosition) < W.Range - 50;
-        private static bool CanInsecWithFlash => R.IsReady() && SkyLv_Tristana.FlashSlot.IsReady() && Player.Distance(TargetSelector.SelectedTarget.ServerPosition) < 400;
-
         static Insec()
         {
             //Menu
