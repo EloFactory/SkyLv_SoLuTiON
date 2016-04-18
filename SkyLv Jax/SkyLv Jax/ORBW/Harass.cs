@@ -54,8 +54,8 @@
             SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.UseSecondEHarass", "Use Second E In Harass").SetValue(false));
             SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.EMiniManaHarass", "Minimum Mana To Use E In Harass").SetValue(new Slider(0, 0, 100)));
             SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.UsePacketCastHarass", "Use PacketCast In Harass").SetValue(false));
-            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.HarassActive", "Harass!").SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
-            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.HarassActiveT", "Harass (toggle)!").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle)));
+            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.HarassActive", "Harass !").SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
+            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.HarassActiveT", "Harass (toggle) !").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle)));
 
 
             Game.OnUpdate += Game_OnUpdate;

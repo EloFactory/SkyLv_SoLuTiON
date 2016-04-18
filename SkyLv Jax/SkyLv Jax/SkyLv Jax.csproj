@@ -65,6 +65,8 @@
     <Compile Include="FEATURE\SpellLeveler.cs" />
     <Compile Include="Initialiser.cs" />
     <Compile Include="ORBW\Combo.cs" />
+    <Compile Include="ORBW\Flee.cs" />
+    <Compile Include="ORBW\WardTrick.cs" />
     <Compile Include="ORBW\Harass.cs" />
     <Compile Include="ORBW\JungleClear.cs" />
     <Compile Include="ORBW\LaneClear.cs" />

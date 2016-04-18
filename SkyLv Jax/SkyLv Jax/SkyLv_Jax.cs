@@ -3,6 +3,7 @@
 
     using LeagueSharp;
     using LeagueSharp.Common;
+    using SharpDX;
 
     using System.Linq;
     using System.Collections.Generic;
@@ -17,6 +18,8 @@
         public static Spell E;
         public static Spell R;
         public static Spell Ignite = new Spell(SpellSlot.Unknown, 600);
+
+        public static Vector3 WardPos;
 
         public static List<Spell> SpellList = new List<Spell>();
 
@@ -76,6 +79,8 @@
 
             Menu.AddSubMenu(new Menu("JungleClear", "JungleClear"));
 
+            Menu.AddSubMenu(new Menu("Flee", "Flee"));
+
             Menu.AddSubMenu(new Menu("Misc", "Misc"));
 
             Menu.AddSubMenu(new Menu("Drawings", "Drawings"));
@@ -86,6 +91,8 @@
             new KillSteal();
             new JungleSteal();
             new OnUpdateFeatures();
+            new Flee();
+            new WardTrick();
             new Combo();
             new Harass();
             new JungleClear();
