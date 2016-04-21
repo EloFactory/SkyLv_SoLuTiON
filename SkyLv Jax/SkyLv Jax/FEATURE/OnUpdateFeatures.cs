@@ -94,7 +94,7 @@
             var MinimumHpSafeAutoR = SkyLv_Jax.Menu.Item("Jax.MinimumHpSafeAutoR").GetValue<Slider>().Value;
             var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCastCombo").GetValue<bool>();
 
-            if (R.IsReady() && Player.Mana > R.ManaCost && CustomLib.enemyChampionInPlayerRange(700) > 0 && Player.HealthPercent <= MinimumHpSafeAutoR)
+            if (R.IsReady() && Player.Mana >= R.ManaCost && CustomLib.enemyChampionInPlayerRange(700) > 0 && Player.HealthPercent <= MinimumHpSafeAutoR)
             {
                 R.Cast(PacketCast);
             }

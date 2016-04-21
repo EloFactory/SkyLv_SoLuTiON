@@ -102,14 +102,14 @@
 
                 if (UseIgniteKS && SkyLv_Jax.Ignite.Slot != SpellSlot.Unknown && target.Health < Player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite) && Player.Distance(target) <= SkyLv_Jax.Ignite.Range)
                 {
-                    SkyLv_Jax.Ignite.Cast(target, true);
+                    SkyLv_Jax.Ignite.Cast(target, PacketCast);
                 }
 
                 if (UseWQIgniteKS && Player.Distance(target) <= Q.Range && Q.IsReady() && W.IsReady() && SkyLv_Jax.Ignite.Slot != SpellSlot.Unknown && Player.Mana > Q.ManaCost + W.ManaCost && target.Health < Q.GetDamage(target) + W.GetDamage(target) + Player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite))
                 {
                     W.Cast();
                     Q.Cast(target, PacketCast);
-                    SkyLv_Jax.Ignite.Cast(target, true);
+                    SkyLv_Jax.Ignite.Cast(target, PacketCast);
                 }
             }
             
