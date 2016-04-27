@@ -48,7 +48,6 @@
             //Menu
             SkyLv_Taric.Menu.SubMenu("JungleClear").AddSubMenu(new Menu("Jungle KS Mode", "Jungle KS Mode"));
             SkyLv_Taric.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").AddItem(new MenuItem("Taric.JungleKS", "Jungle KS").SetValue(true));
-            SkyLv_Taric.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").AddItem(new MenuItem("Taric.JungleKSPacketCast", "Jungle KS PacketCast").SetValue(false));
             SkyLv_Taric.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").AddSubMenu(new Menu("Advanced Settings", "Advanced Settings"));
             SkyLv_Taric.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").SubMenu("Advanced Settings").AddItem(new MenuItem("Taric.UseAAJungleKS", "KS With AA").SetValue(true));
             SkyLv_Taric.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").SubMenu("Advanced Settings").AddItem(new MenuItem("Taric.UseEJungleKS", "KS With E").SetValue(true));
@@ -67,7 +66,9 @@
             {
                 var UseAAJungleKS = SkyLv_Taric.Menu.Item("Taric.UseAAJungleKS").GetValue<bool>();
                 var UseEJungleKS = SkyLv_Taric.Menu.Item("Taric.UseEJungleKS").GetValue<bool>();
-                var PacketCast = SkyLv_Taric.Menu.Item("Taric.JungleKSPacketCast").GetValue<bool>();
+                var PacketCast = SkyLv_Taric.Menu.Item("Taric.UsePacketCast").GetValue<bool>();
+
+                if (Player.IsRecalling()) return;
 
                 foreach (var target in ObjectManager.Get<Obj_AI_Base>().Where(target => SkyLv_Taric.Monsters.Contains(target.BaseSkinName) && !target.IsDead))
                 {

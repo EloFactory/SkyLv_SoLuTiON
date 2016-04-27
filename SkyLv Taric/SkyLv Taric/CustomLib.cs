@@ -15,6 +15,14 @@
                 return SkyLv_Taric.Player;
             }
         }
+
+        private static Spell Q
+        {
+            get
+            {
+                return SkyLv_Taric.Q;
+            }
+        }
         #endregion
 
 

@@ -47,18 +47,17 @@
         static LaneClear()
         {
             //Menu
-            SkyLv_Taric.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Taric.UseQLaneClear", "Use Q in LaneClear").SetValue(true));
-            SkyLv_Taric.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Taric.QMiniManaLaneClear", "Minimum Mana Percent To Use Q In LaneClear").SetValue(new Slider(0, 0, 100)));
-            SkyLv_Taric.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Taric.QMiniMinimionAroundLaneClear", "Minimum Minion Around To Use Q In LaneClear").SetValue(new Slider(6, 1, 10)));
-            SkyLv_Taric.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Taric.UseWLaneClear", "Use W in LaneClear").SetValue(true));
-            SkyLv_Taric.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Taric.WMiniManaLaneClear", "Minimum Mana Percent To Use W In LaneClear").SetValue(new Slider(0, 0, 100)));
-            SkyLv_Taric.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Taric.WMiniMinimionAroundLaneClear", "Minimum Minion Around To Use W In LaneClear").SetValue(new Slider(6, 1, 10)));
-            SkyLv_Taric.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Taric.UseELaneClear", "Use E in LaneClear").SetValue(true));
-            SkyLv_Taric.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Taric.EMiniManaLaneClear", "Minimum Mana Percent To Use E In LaneClear").SetValue(new Slider(0, 0, 100)));
-            SkyLv_Taric.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Taric.EMiniHitLaneClear", "Minimum Minion Hit To Use E In LaneClear").SetValue(new Slider(3, 1, 6)));
+            SkyLv_Taric.Menu.SubMenu("LaneClear").SubMenu("Q Settings LaneClear").AddItem(new MenuItem("Taric.UseQLaneClear", "Use Q in LaneClear").SetValue(false));
+            SkyLv_Taric.Menu.SubMenu("LaneClear").SubMenu("Q Settings LaneClear").AddItem(new MenuItem("Taric.QMiniManaLaneClear", "Minimum Mana Percent To Use Q In LaneClear").SetValue(new Slider(0, 0, 100)));
+            SkyLv_Taric.Menu.SubMenu("LaneClear").SubMenu("Q Settings LaneClear").AddItem(new MenuItem("Taric.QMiniMinimionAroundLaneClear", "Minimum Minion Around To Use Q In LaneClear").SetValue(new Slider(6, 1, 10)));
+            SkyLv_Taric.Menu.SubMenu("LaneClear").SubMenu("W Settings LaneClear").AddItem(new MenuItem("Taric.UseWLaneClear", "Use W in LaneClear").SetValue(false));
+            SkyLv_Taric.Menu.SubMenu("LaneClear").SubMenu("W Settings LaneClear").AddItem(new MenuItem("Taric.WMiniManaLaneClear", "Minimum Mana Percent To Use W In LaneClear").SetValue(new Slider(0, 0, 100)));
+            SkyLv_Taric.Menu.SubMenu("LaneClear").SubMenu("W Settings LaneClear").AddItem(new MenuItem("Taric.WMiniMinimionAroundLaneClear", "Minimum Minion Around To Use W In LaneClear").SetValue(new Slider(6, 1, 10)));
+            SkyLv_Taric.Menu.SubMenu("LaneClear").SubMenu("E Settings LaneClear").AddItem(new MenuItem("Taric.UseELaneClear", "Use E in LaneClear").SetValue(false));
+            SkyLv_Taric.Menu.SubMenu("LaneClear").SubMenu("E Settings LaneClear").AddItem(new MenuItem("Taric.EMiniManaLaneClear", "Minimum Mana Percent To Use E In LaneClear").SetValue(new Slider(0, 0, 100)));
+            SkyLv_Taric.Menu.SubMenu("LaneClear").SubMenu("E Settings LaneClear").AddItem(new MenuItem("Taric.EMiniHitLaneClear", "Minimum Minion Hit To Use E In LaneClear").SetValue(new Slider(3, 1, 6)));
             SkyLv_Taric.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Taric.SafeLaneClear", "Dont Use Spell In Lane Clear If Enemy in Dangerous Range").SetValue(true));
             SkyLv_Taric.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Taric.UseTaricAAPassiveLaneClear", "Use All Taric AA Passive In LaneClear").SetValue(true));
-            SkyLv_Taric.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Taric.UsePacketCastLaneClear", "Use PacketCast In LaneClear").SetValue(false));
 
             Game.OnUpdate += Game_OnUpdate;
         }
@@ -70,7 +69,7 @@
 
         public static void LaneClearLogic()
         {
-            var PacketCast = SkyLv_Taric.Menu.Item("Taric.UsePacketCastLaneClear").GetValue<bool>();
+            var PacketCast = SkyLv_Taric.Menu.Item("Taric.UsePacketCast").GetValue<bool>();
 
             var UseQLaneClear = SkyLv_Taric.Menu.Item("Taric.UseQLaneClear").GetValue<bool>();
             var UseWLaneClear = SkyLv_Taric.Menu.Item("Taric.UseWLaneClear").GetValue<bool>();

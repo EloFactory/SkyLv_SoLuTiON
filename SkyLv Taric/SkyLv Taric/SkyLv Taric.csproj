@@ -54,10 +54,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomLib.cs" />
+    <Compile Include="FEATURE\AntiGapCloser.cs" />
+    <Compile Include="FEATURE\CastOnDash.cs" />
     <Compile Include="FEATURE\Drawing.cs" />
     <Compile Include="FEATURE\FountainMoves.cs" />
+    <Compile Include="FEATURE\Interrupter.cs" />
     <Compile Include="FEATURE\JungleSteal.cs" />
     <Compile Include="FEATURE\KillSteal.cs" />
+    <Compile Include="FEATURE\OnProcessSpellCast.cs" />
     <Compile Include="FEATURE\OnUpdateFeatures.cs" />
     <Compile Include="FEATURE\PotionManager.cs" />
     <Compile Include="FEATURE\SkinChanger.cs" />

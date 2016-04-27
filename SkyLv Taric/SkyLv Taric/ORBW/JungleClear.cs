@@ -48,16 +48,15 @@
         static JungleClear()
         {
             //Menu
-            SkyLv_Taric.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Taric.UseQJungleClear", "Use Q In JungleClear").SetValue(true));
-            SkyLv_Taric.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Taric.QMiniManaJungleClear", "Minimum Mana To Use Q In JungleClear").SetValue(new Slider(0, 0, 100)));
-            SkyLv_Taric.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Taric.UseWJungleClear", "Use W In JungleClear").SetValue(true));
-            SkyLv_Taric.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Taric.WMiniManaJungleClear", "Minimum Mana To Use W In JungleClear").SetValue(new Slider(0, 0, 100)));
-            SkyLv_Taric.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Taric.UseEJungleClear", "Use E In JungleClear").SetValue(true));
-            SkyLv_Taric.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Taric.EMiniManaJungleClear", "Minimum Mana To Use E In JungleClear").SetValue(new Slider(0, 0, 100)));
+            SkyLv_Taric.Menu.SubMenu("JungleClear").SubMenu("Q Settings JungleClear").AddItem(new MenuItem("Taric.UseQJungleClear", "Use Q In JungleClear").SetValue(true));
+            SkyLv_Taric.Menu.SubMenu("JungleClear").SubMenu("Q Settings JungleClear").AddItem(new MenuItem("Taric.QMiniManaJungleClear", "Minimum Mana To Use Q In JungleClear").SetValue(new Slider(0, 0, 100)));
+            SkyLv_Taric.Menu.SubMenu("JungleClear").SubMenu("W Settings JungleClear").AddItem(new MenuItem("Taric.UseWJungleClear", "Use W In JungleClear").SetValue(true));
+            SkyLv_Taric.Menu.SubMenu("JungleClear").SubMenu("W Settings JungleClear").AddItem(new MenuItem("Taric.WMiniManaJungleClear", "Minimum Mana To Use W In JungleClear").SetValue(new Slider(0, 0, 100)));
+            SkyLv_Taric.Menu.SubMenu("JungleClear").SubMenu("E Settings JungleClear").AddItem(new MenuItem("Taric.UseEJungleClear", "Use E In JungleClear").SetValue(true));
+            SkyLv_Taric.Menu.SubMenu("JungleClear").SubMenu("E Settings JungleClear").AddItem(new MenuItem("Taric.EMiniManaJungleClear", "Minimum Mana To Use E In JungleClear").SetValue(new Slider(0, 0, 100)));
             SkyLv_Taric.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Taric.SafeJungleClear", "Dont Use Spell In Jungle Clear If Enemy in Dangerous Range").SetValue(true));
             SkyLv_Taric.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Taric.SpellOnlyBigMonster", "Use Spell Only On Big Monster").SetValue(true));
             SkyLv_Taric.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Taric.UseTaricAAPassiveJungleClear", "Use All Taric AA Passive In JungleClear").SetValue(true));
-            SkyLv_Taric.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Taric.UsePacketCastJungleClear", "Use PacketCast In JungleClear").SetValue(false));
 
             Game.OnUpdate += Game_OnUpdate;
         }
@@ -69,7 +68,7 @@
 
         public static void JungleClearLogic()
         {
-            var PacketCast = SkyLv_Taric.Menu.Item("Taric.UsePacketCastJungleClear").GetValue<bool>();
+            var PacketCast = SkyLv_Taric.Menu.Item("Taric.UsePacketCast").GetValue<bool>();
             var useQ = SkyLv_Taric.Menu.Item("Taric.UseQJungleClear").GetValue<bool>();
             var useW = SkyLv_Taric.Menu.Item("Taric.UseWJungleClear").GetValue<bool>();
             var useE = SkyLv_Taric.Menu.Item("Taric.UseEJungleClear").GetValue<bool>();

@@ -18,35 +18,11 @@
             }
         }
 
-        private static Spell Q
-        {
-            get
-            {
-                return SkyLv_Taric.Q;
-            }
-        }
-
-        private static Spell W
-        {
-            get
-            {
-                return SkyLv_Taric.W;
-            }
-        }
-
         private static Spell E
         {
             get
             {
                 return SkyLv_Taric.E;
-            }
-        }
-
-        private static Spell R
-        {
-            get
-            {
-                return SkyLv_Taric.R;
             }
         }
         #endregion
@@ -59,7 +35,6 @@
             //Menu
             SkyLv_Taric.Menu.SubMenu("Combo").AddSubMenu(new Menu("KS Mode", "KS Mode"));
             SkyLv_Taric.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Taric.KS", "Kill Steal").SetValue(true));
-            SkyLv_Taric.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Taric.PacketCastKS", "PacketCast KS").SetValue(false));
             SkyLv_Taric.Menu.SubMenu("Combo").SubMenu("KS Mode").AddSubMenu(new Menu("Spell Settings", "Spell Settings"));
             SkyLv_Taric.Menu.SubMenu("Combo").SubMenu("KS Mode").SubMenu("Spell Settings").AddItem(new MenuItem("Taric.UseAAKS", "KS With AA").SetValue(true));
             SkyLv_Taric.Menu.SubMenu("Combo").SubMenu("KS Mode").SubMenu("Spell Settings").AddItem(new MenuItem("Taric.UseIgniteKS", "KS With Ignite").SetValue(true));
@@ -75,7 +50,7 @@
 
         public static void KS()
         {
-            var PacketCast = SkyLv_Taric.Menu.Item("Taric.PacketCastKS").GetValue<bool>();
+            var PacketCast = SkyLv_Taric.Menu.Item("Taric.UsePacketCast").GetValue<bool>();
             var UseIgniteKS = SkyLv_Taric.Menu.Item("Taric.UseIgniteKS").GetValue<bool>();
             var UseAAKS = SkyLv_Taric.Menu.Item("Taric.UseAAKS").GetValue<bool>();
             var UseEKS = SkyLv_Taric.Menu.Item("Taric.UseEKS").GetValue<bool>();

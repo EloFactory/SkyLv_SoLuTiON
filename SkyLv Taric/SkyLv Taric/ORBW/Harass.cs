@@ -46,14 +46,14 @@
         static Harass()
         {
             //Menu
-            SkyLv_Taric.Menu.SubMenu("Harass").AddItem(new MenuItem("Taric.UseQHarass", "Use Q In Harass").SetValue(false));
-            SkyLv_Taric.Menu.SubMenu("Harass").AddItem(new MenuItem("Taric.QMiniManaHarass", "Minimum Mana To Use Q In Harass").SetValue(new Slider(50, 0, 100)));
-            SkyLv_Taric.Menu.SubMenu("Harass").AddItem(new MenuItem("Taric.UseWHarass", "Use W In Harass").SetValue(false));
-            SkyLv_Taric.Menu.SubMenu("Harass").AddItem(new MenuItem("Taric.WMiniManaHarass", "Minimum Mana To Use W In Harass").SetValue(new Slider(50, 0, 100)));
-            SkyLv_Taric.Menu.SubMenu("Harass").AddItem(new MenuItem("Taric.UseEHarass", "Use E In Harass").SetValue(true));
-            SkyLv_Taric.Menu.SubMenu("Harass").AddItem(new MenuItem("Taric.EMiniManaHarass", "Minimum Mana To Use E In Harass").SetValue(new Slider(0, 0, 100)));
+
+            SkyLv_Taric.Menu.SubMenu("Harass").SubMenu("Q Settings Harass").AddItem(new MenuItem("Taric.UseQHarass", "Use Q In Harass").SetValue(false));
+            SkyLv_Taric.Menu.SubMenu("Harass").SubMenu("Q Settings Harass").AddItem(new MenuItem("Taric.QMiniManaHarass", "Minimum Mana To Use Q In Harass").SetValue(new Slider(50, 0, 100)));
+            SkyLv_Taric.Menu.SubMenu("Harass").SubMenu("W Settings Harass").AddItem(new MenuItem("Taric.UseWHarass", "Use W In Harass").SetValue(false));
+            SkyLv_Taric.Menu.SubMenu("Harass").SubMenu("W Settings Harass").AddItem(new MenuItem("Taric.WMiniManaHarass", "Minimum Mana To Use W In Harass").SetValue(new Slider(50, 0, 100)));
+            SkyLv_Taric.Menu.SubMenu("Harass").SubMenu("E Settings Harass").AddItem(new MenuItem("Taric.UseEHarass", "Use E In Harass").SetValue(true));
+            SkyLv_Taric.Menu.SubMenu("Harass").SubMenu("E Settings Harass").AddItem(new MenuItem("Taric.EMiniManaHarass", "Minimum Mana To Use E In Harass").SetValue(new Slider(0, 0, 100)));
             SkyLv_Taric.Menu.SubMenu("Harass").AddItem(new MenuItem("Taric.UseTaricAAPassiveHarass", "Use All Taric AA Passive In Harass").SetValue(true));
-            SkyLv_Taric.Menu.SubMenu("Harass").AddItem(new MenuItem("Taric.UsePacketCastHarass", "Use PacketCast In Harass").SetValue(false));
             SkyLv_Taric.Menu.SubMenu("Harass").AddItem(new MenuItem("Taric.HarassActive", "Harass !").SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
             SkyLv_Taric.Menu.SubMenu("Harass").AddItem(new MenuItem("Taric.HarassActiveT", "Harass (toggle) !").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle)));
 
@@ -71,7 +71,7 @@
 
         public static void HarassLogic()
         {
-            var PacketCast = SkyLv_Taric.Menu.Item("Taric.UsePacketCastHarass").GetValue<bool>();
+            var PacketCast = SkyLv_Taric.Menu.Item("Taric.UsePacketCast").GetValue<bool>();
             var UseQHarass = SkyLv_Taric.Menu.Item("Taric.UseQHarass").GetValue<bool>();
             var UseWHarass = SkyLv_Taric.Menu.Item("Taric.UseWHarass").GetValue<bool>();
             var UseEHarass = SkyLv_Taric.Menu.Item("Taric.UseEHarass").GetValue<bool>();
