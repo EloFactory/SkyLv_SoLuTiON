@@ -48,7 +48,6 @@
             //Menu
             SkyLv_Jax.Menu.SubMenu("JungleClear").AddSubMenu(new Menu("Jungle KS Mode", "Jungle KS Mode"));
             SkyLv_Jax.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").AddItem(new MenuItem("Jax.JungleKS", "Jungle KS").SetValue(true));
-            SkyLv_Jax.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").AddItem(new MenuItem("Jax.JungleKSPacketCast", "Jungle KS PacketCast").SetValue(false));
             SkyLv_Jax.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").AddSubMenu(new Menu("Advanced Settings", "Advanced Settings"));
             SkyLv_Jax.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").SubMenu("Advanced Settings").AddItem(new MenuItem("Jax.UseQJungleKS", "KS With Q").SetValue(true));
             SkyLv_Jax.Menu.SubMenu("JungleClear").SubMenu("Jungle KS Mode").SubMenu("Advanced Settings").AddItem(new MenuItem("Jax.UseWQJungleKS", "KS With W + Q").SetValue(true));
@@ -69,7 +68,7 @@
                 var UseQJungleKS = SkyLv_Jax.Menu.Item("Jax.UseQJungleKS").GetValue<bool>();
                 var UseWQJungleKS = SkyLv_Jax.Menu.Item("Jax.UseWQJungleKS").GetValue<bool>();
                 var UseSecondEJungleKS = SkyLv_Jax.Menu.Item("Jax.UseSecondEJungleKS").GetValue<bool>();
-                var PacketCast = SkyLv_Jax.Menu.Item("Jax.JungleKSPacketCast").GetValue<bool>();
+                var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCast").GetValue<bool>();
 
                 foreach (var target in ObjectManager.Get<Obj_AI_Base>().Where(target => SkyLv_Jax.Monsters.Contains(target.BaseSkinName) && !target.IsDead))
                 {

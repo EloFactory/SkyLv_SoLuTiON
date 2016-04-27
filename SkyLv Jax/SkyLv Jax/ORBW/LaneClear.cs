@@ -47,14 +47,13 @@
         static LaneClear()
         {
             //Menu
-            SkyLv_Jax.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Jax.UseQLaneClear", "Use Q in LaneClear").SetValue(false));
-            SkyLv_Jax.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Jax.QMiniManaLaneClear", "Minimum Mana Percent To Use Q In LaneClear").SetValue(new Slider(70, 0, 100)));
-            SkyLv_Jax.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Jax.UseWLaneClear", "Use W in LaneClear").SetValue(false));
-            SkyLv_Jax.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Jax.WMiniManaLaneClear", "Minimum Mana Percent To Use W In LaneClear").SetValue(new Slider(0, 0, 100)));
-            SkyLv_Jax.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Jax.UseELaneClear", "Use E in LaneClear").SetValue(false));
-            SkyLv_Jax.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Jax.EMiniManaLaneClear", "Minimum Mana Percent To Use E In LaneClear").SetValue(new Slider(0, 0, 100)));
-            SkyLv_Jax.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Jax.EMiniHitLaneClear", "Minimum Minion Hit To Use E In LaneClear").SetValue(new Slider(3, 1, 6)));
-            SkyLv_Jax.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Jax.UsePacketCastLaneClear", "Use PacketCast In LaneClear").SetValue(false));
+            SkyLv_Jax.Menu.SubMenu("LaneClear").SubMenu("Q Settings LaneClear").AddItem(new MenuItem("Jax.UseQLaneClear", "Use Q in LaneClear").SetValue(false));
+            SkyLv_Jax.Menu.SubMenu("LaneClear").SubMenu("Q Settings LaneClear").AddItem(new MenuItem("Jax.QMiniManaLaneClear", "Minimum Mana Percent To Use Q In LaneClear").SetValue(new Slider(70, 0, 100)));
+            SkyLv_Jax.Menu.SubMenu("LaneClear").SubMenu("W Settings LaneClear").AddItem(new MenuItem("Jax.UseWLaneClear", "Use W in LaneClear").SetValue(false));
+            SkyLv_Jax.Menu.SubMenu("LaneClear").SubMenu("W Settings LaneClear").AddItem(new MenuItem("Jax.WMiniManaLaneClear", "Minimum Mana Percent To Use W In LaneClear").SetValue(new Slider(0, 0, 100)));
+            SkyLv_Jax.Menu.SubMenu("LaneClear").SubMenu("E Settings LaneClear").AddItem(new MenuItem("Jax.UseELaneClear", "Use E in LaneClear").SetValue(false));
+            SkyLv_Jax.Menu.SubMenu("LaneClear").SubMenu("E Settings LaneClear").AddItem(new MenuItem("Jax.EMiniManaLaneClear", "Minimum Mana Percent To Use E In LaneClear").SetValue(new Slider(0, 0, 100)));
+            SkyLv_Jax.Menu.SubMenu("LaneClear").SubMenu("E Settings LaneClear").AddItem(new MenuItem("Jax.EMiniHitLaneClear", "Minimum Minion Hit To Use E In LaneClear").SetValue(new Slider(3, 1, 6)));
             SkyLv_Jax.Menu.SubMenu("LaneClear").AddItem(new MenuItem("Jax.SafeLaneClear", "Dont Use Spell In Lane Clear If Enemy in Dangerous Range").SetValue(true));
 
             Game.OnUpdate += Game_OnUpdate;
@@ -67,7 +66,7 @@
 
         public static void LaneClearLogic()
         {
-            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCastLaneClear").GetValue<bool>();
+            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCast").GetValue<bool>();
 
             var useQ = SkyLv_Jax.Menu.Item("Jax.UseQLaneClear").GetValue<bool>();
             var useW = SkyLv_Jax.Menu.Item("Jax.UseWLaneClear").GetValue<bool>();

@@ -70,7 +70,7 @@
         {
             var target = TargetSelector.GetTarget(E.Range, TargetSelector.DamageType.Physical);
             var MinimumEnemyHitAutoE = SkyLv_Jax.Menu.Item("Jax.MinimumEnemyHitAutoE").GetValue<Slider>().Value;
-            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCastCombo").GetValue<bool>();
+            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCast").GetValue<bool>();
 
             if (target.IsValidTarget(E.Range) && CustomLib.iSJaxEActive())
             {
@@ -81,7 +81,7 @@
         public static void AutoSafeE()
         {
             var MinimumHpSafeAutoE = SkyLv_Jax.Menu.Item("Jax.MinimumHpSafeAutoE").GetValue<Slider>().Value;
-            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCastCombo").GetValue<bool>();
+            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCast").GetValue<bool>();
 
             if (CustomLib.iSJaxEActive() && Player.HealthPercent <= MinimumHpSafeAutoE && CustomLib.enemyChampionInPlayerRange(E.Range) > 0)
             {
@@ -92,7 +92,7 @@
         public static void AutoR()
         {
             var MinimumHpSafeAutoR = SkyLv_Jax.Menu.Item("Jax.MinimumHpSafeAutoR").GetValue<Slider>().Value;
-            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCastCombo").GetValue<bool>();
+            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCast").GetValue<bool>();
 
             if (R.IsReady() && Player.Mana >= R.ManaCost && CustomLib.enemyChampionInPlayerRange(700) > 0 && Player.HealthPercent <= MinimumHpSafeAutoR)
             {

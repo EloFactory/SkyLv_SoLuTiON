@@ -59,7 +59,6 @@
             SkyLv_Jax.Menu.SubMenu("Combo").AddItem(new MenuItem("Jax.UseRCombo", "Use R Safe Mode In Combo").SetValue(true));
             SkyLv_Jax.Menu.SubMenu("Combo").AddItem(new MenuItem("Jax.MinimumEnemySafeR", "Minimum Enemy Around To Use R Safe Mode In Combo").SetValue(new Slider(2, 1, 5)));
             SkyLv_Jax.Menu.SubMenu("Combo").AddItem(new MenuItem("Jax.MinimumEnemyHitSecondE", "Minimum Enemy Hit To Use Second E").SetValue(new Slider(2, 1, 5)));
-            SkyLv_Jax.Menu.SubMenu("Combo").AddItem(new MenuItem("Jax.UsePacketCastCombo", "Use PacketCast In Combo").SetValue(false));
 
             Game.OnUpdate += Game_OnUpdate;
         }
@@ -71,7 +70,7 @@
 
         public static void ComboLogic()
         {
-            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCastCombo").GetValue<bool>();
+            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCast").GetValue<bool>();
             var useQ = SkyLv_Jax.Menu.Item("Jax.UseQCombo").GetValue<bool>();
             var useW = SkyLv_Jax.Menu.Item("Jax.UseWCombo").GetValue<bool>();
             var useE = SkyLv_Jax.Menu.Item("Jax.UseECombo").GetValue<bool>();

@@ -74,14 +74,24 @@
             Menu.AddSubMenu(new Menu("Combo", "Combo"));
 
             Menu.AddSubMenu(new Menu("Harass", "Harass"));
+            Menu.SubMenu("Harass").AddSubMenu(new Menu("Q Settings Harass", "Q Settings Harass"));
+            Menu.SubMenu("Harass").AddSubMenu(new Menu("W Settings Harass", "W Settings Harass"));
+            Menu.SubMenu("Harass").AddSubMenu(new Menu("E Settings Harass", "E Settings Harass"));
 
             Menu.AddSubMenu(new Menu("LaneClear", "LaneClear"));
+            Menu.SubMenu("LaneClear").AddSubMenu(new Menu("Q Settings LaneClear", "Q Settings LaneClear"));
+            Menu.SubMenu("LaneClear").AddSubMenu(new Menu("W Settings LaneClear", "W Settings LaneClear"));
+            Menu.SubMenu("LaneClear").AddSubMenu(new Menu("E Settings LaneClear", "E Settings LaneClear"));
 
             Menu.AddSubMenu(new Menu("JungleClear", "JungleClear"));
+            Menu.SubMenu("JungleClear").AddSubMenu(new Menu("Q Settings JungleClear", "Q Settings JungleClear"));
+            Menu.SubMenu("JungleClear").AddSubMenu(new Menu("W Settings JungleClear", "W Settings JungleClear"));
+            Menu.SubMenu("JungleClear").AddSubMenu(new Menu("E Settings JungleClear", "E Settings JungleClear"));
 
             Menu.AddSubMenu(new Menu("Flee", "Flee"));
 
             Menu.AddSubMenu(new Menu("Misc", "Misc"));
+            Menu.SubMenu("Misc").AddItem(new MenuItem("Jax.UsePacketCast", "Use PacketCast").SetValue(false));
 
             Menu.AddSubMenu(new Menu("Drawings", "Drawings"));
 

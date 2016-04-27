@@ -63,7 +63,6 @@
             SkyLv_Jax.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Jax.UseWQKS", "KS With W + Q").SetValue(true));
             SkyLv_Jax.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Jax.UseWQIgniteKS", "KS With W + Q + Ignite").SetValue(true));
             SkyLv_Jax.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Jax.UseSecondEKS", "KS With Second E").SetValue(true));
-            SkyLv_Jax.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Jax.PacketCastKS", "PacketCast KS").SetValue(false));
 
             Game.OnUpdate += Game_OnUpdate;
         }
@@ -75,7 +74,7 @@
 
         public static void KS()
         {
-            var PacketCast = SkyLv_Jax.Menu.Item("Jax.PacketCastKS").GetValue<bool>();
+            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCast").GetValue<bool>();
             var UseIgniteKS = SkyLv_Jax.Menu.Item("Jax.UseIgniteKS").GetValue<bool>();
             var UseQKS = SkyLv_Jax.Menu.Item("Jax.UseQKS").GetValue<bool>();
             var UseWQKS = SkyLv_Jax.Menu.Item("Jax.UseWQKS").GetValue<bool>();

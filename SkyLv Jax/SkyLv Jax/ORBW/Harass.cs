@@ -46,14 +46,13 @@
         static Harass()
         {
             //Menu
-            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.UseQHarass", "Use Q In Harass").SetValue(false));
-            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.QMiniManaHarass", "Minimum Mana To Use Q In Harass").SetValue(new Slider(50, 0, 100)));
-            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.UseWHarass", "Use W In Harass").SetValue(true));
-            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.WMiniManaHarass", "Minimum Mana To Use W In Harass").SetValue(new Slider(0, 0, 100)));
-            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.UseEHarass", "Use E In Harass").SetValue(false));
-            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.UseSecondEHarass", "Use Second E In Harass").SetValue(false));
-            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.EMiniManaHarass", "Minimum Mana To Use E In Harass").SetValue(new Slider(0, 0, 100)));
-            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.UsePacketCastHarass", "Use PacketCast In Harass").SetValue(false));
+            SkyLv_Jax.Menu.SubMenu("Harass").SubMenu("Q Settings Harass").AddItem(new MenuItem("Jax.UseQHarass", "Use Q In Harass").SetValue(false));
+            SkyLv_Jax.Menu.SubMenu("Harass").SubMenu("Q Settings Harass").AddItem(new MenuItem("Jax.QMiniManaHarass", "Minimum Mana To Use Q In Harass").SetValue(new Slider(50, 0, 100)));
+            SkyLv_Jax.Menu.SubMenu("Harass").SubMenu("W Settings Harass").AddItem(new MenuItem("Jax.UseWHarass", "Use W In Harass").SetValue(true));
+            SkyLv_Jax.Menu.SubMenu("Harass").SubMenu("W Settings Harass").AddItem(new MenuItem("Jax.WMiniManaHarass", "Minimum Mana To Use W In Harass").SetValue(new Slider(0, 0, 100)));
+            SkyLv_Jax.Menu.SubMenu("Harass").SubMenu("E Settings Harass").AddItem(new MenuItem("Jax.UseEHarass", "Use E In Harass").SetValue(false));
+            SkyLv_Jax.Menu.SubMenu("Harass").SubMenu("E Settings Harass").AddItem(new MenuItem("Jax.UseSecondEHarass", "Use Second E In Harass").SetValue(false));
+            SkyLv_Jax.Menu.SubMenu("Harass").SubMenu("E Settings Harass").AddItem(new MenuItem("Jax.EMiniManaHarass", "Minimum Mana To Use E In Harass").SetValue(new Slider(0, 0, 100)));
             SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.HarassActive", "Harass !").SetValue(new KeyBind("C".ToCharArray()[0], KeyBindType.Press)));
             SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.HarassActiveT", "Harass (toggle) !").SetValue(new KeyBind("Y".ToCharArray()[0], KeyBindType.Toggle)));
 
@@ -71,7 +70,7 @@
 
         public static void HarassLogic()
         {
-            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCastHarass").GetValue<bool>();
+            var PacketCast = SkyLv_Jax.Menu.Item("Jax.UsePacketCast").GetValue<bool>();
             var UseQHarass = SkyLv_Jax.Menu.Item("Jax.UseQHarass").GetValue<bool>();
             var UseWHarass = SkyLv_Jax.Menu.Item("Jax.UseWHarass").GetValue<bool>();
             var UseEHarass = SkyLv_Jax.Menu.Item("Jax.UseEHarass").GetValue<bool>();
