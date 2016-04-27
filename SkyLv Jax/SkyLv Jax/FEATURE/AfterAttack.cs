@@ -43,9 +43,9 @@
         static AfterAttack()
         {
             //Menu
-            SkyLv_Jax.Menu.SubMenu("Combo").AddItem(new MenuItem("Jax.AfterAttackModeCombo", "Cancel W With AA In Combo").SetValue(true));
-            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.AfterAttackModeHarass", "Cancel W With AA In Harass").SetValue(true));
-            SkyLv_Jax.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Jax.AfterAttackModeJungleClear", "Cancel Spell With AA In JungleClear").SetValue(true));
+            SkyLv_Jax.Menu.SubMenu("Combo").AddItem(new MenuItem("Jax.AfterAttackModeCombo", "Cancel AA With W In Combo").SetValue(true));
+            SkyLv_Jax.Menu.SubMenu("Harass").AddItem(new MenuItem("Jax.AfterAttackModeHarass", "Cancel AA With W In Harass").SetValue(true));
+            SkyLv_Jax.Menu.SubMenu("JungleClear").AddItem(new MenuItem("Jax.AfterAttackModeJungleClear", "Cancel AA With Spell In JungleClear").SetValue(true));
 
             Orbwalking.AfterAttack += Orbwalking_AfterAttack;
         }
