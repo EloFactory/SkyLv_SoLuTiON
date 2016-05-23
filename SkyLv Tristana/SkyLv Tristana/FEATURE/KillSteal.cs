@@ -42,13 +42,13 @@
         {
             //Menu
             SkyLv_Tristana.Menu.SubMenu("Combo").AddSubMenu(new Menu("KS Mode", "KS Mode"));
-            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Tristana.KS", "Kill Steal").SetValue(false));
+            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Tristana.KS", "Kill Steal").SetValue(true));
             SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").AddItem(new MenuItem("Tristana.PacketCastKS", "PacketCast KS").SetValue(false));
             SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").AddSubMenu(new Menu("Spell Settings", "Spell Settings"));
             SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").SubMenu("Spell Settings").AddItem(new MenuItem("Tristana.UseAAKS", "KS With AA").SetValue(true));
             SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").SubMenu("Spell Settings").AddItem(new MenuItem("Tristana.UseIgniteKS", "KS With Ignite").SetValue(true));
             SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").SubMenu("Spell Settings").AddItem(new MenuItem("Tristana.UseEKS", "KS With E").SetValue(true));
-            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").SubMenu("Spell Settings").AddItem(new MenuItem("Tristana.UseRKS", "KS With R").SetValue(false));
+            SkyLv_Tristana.Menu.SubMenu("Combo").SubMenu("KS Mode").SubMenu("Spell Settings").AddItem(new MenuItem("Tristana.UseRKS", "KS With R").SetValue(true));
             
 
             Game.OnUpdate += Game_OnUpdate;
